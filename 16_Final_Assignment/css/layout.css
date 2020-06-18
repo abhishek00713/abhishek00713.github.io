@@ -1,0 +1,37 @@
+ .main_container{
+        width: 100%;
+        height: 100%;
+/*    min-width:768px;*/
+    
+}
+
+.header_container{
+    
+    width: 100%;
+    height: 800px;
+    background-color: #001c37;
+    
+    
+}
+
+.header_content_wrapper{
+    display: block;
+    
+    
+    height: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(../img/full_back_01.png);
+    background-size: cover;
+    background-position: -436px 44px;
+    background-repeat: no-repeat;
+    
+}
+    
+.header_content_top{
+    width: 100%;
+}
+.header_content_bottom{
+        width: 100%;
+    }
+    
