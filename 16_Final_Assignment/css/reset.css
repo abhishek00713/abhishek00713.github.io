@@ -8,3 +8,7 @@
     content: '';
     display: table;
 }
+
+a:link , a:visited{
+     color: #002e5b;
+}

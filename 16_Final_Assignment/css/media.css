@@ -1,11 +1,10 @@
+/*768*/
 @media (min-width:768px){
-    
-}
-@media (min-width: 1024px){
     .main_container{
         width: 100%;
         height: 100%;
     min-width:1200px;
+/*        margin: 0 auto;*/
     
 }
 
@@ -21,24 +20,34 @@
 .header_content_wrapper{
     display: block;
     
-    max-width: 1173px;    
+/*    max-width: 1173px;    */
     height: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    
     background-image: url(../img/full_back_01.png);
     background-size: cover;
-    background-position: -250px 30px;
+    background-position: -260px 30px;
     background-repeat: no-repeat;
     
 }
     
+    .left_arrow{
+        margin-right: 25px;
+        height: auto;
+        width: 30px;
+    }
+    .Right_arrow{
+        height: auto;
+        width: 30px;
+    }
     
 .header_content_bottom{
         width: 100%;
     }
     
 
-
+    .hamburger_dropdown{
+        display: none;
+    }
     .fa-bars{
         display: none;
     }
@@ -47,14 +56,26 @@
     position: absolute;
     width: 20%;
     padding-top: 50px;
-    margin-left: 75px;
+    margin-left: 30px;
     
 }
+    .english_language{
+    width: auto;
+    height: auto;
+}
+    
+.logo_img{
+    width: 179px;
+    height: auto;
+}    
 
 .nav_menu{
-    width: 49%;
+    max-width: 1024px;
+    width: 46%;
+/*
     position: absolute;
-    margin-left: 633px;
+    margin-left: 634px;
+*/
 
     
 }
@@ -65,16 +86,19 @@
     height: 32px;
 }
 
-
+    .nav_menu_contents a{
+        color: #ffffff;
+        text-decoration: none;
+    }
 .nav_style{
-    
+    display: inline-block;
     margin-top: 70px;
     list-style: none;
     font-size: 14px;
     font-family: Arial;
     float: left;
     margin-right: 41px;
-    color: white;
+    color: #ffffff;
 }
 .nav_style_button{
     list-style: none;
@@ -96,8 +120,675 @@
 
 
 .Previou_next{
-    margin-top: 493px;
-    margin-left: 81px;
+    margin-top: 427px;
+    margin-left: 38px;
+}
+
+.Banner_text{
+    position: absolute;
+/*    padding-left: 651px;*/
+    margin-top: 408px;
+}
+
+.learn_more_text{
+    position: absolute;
+    width: 40%;
+    margin-top: 51px;
+    
+    margin-left: 220px;
+    
+    font-size: 21px;
+    
+}
+.Banner_text a{
+    color: #f2db29;
+    text-decoration: none;
+}
+
+.previous_next_text{
+    font-family: 'Montserrat';
+    color: #f2db29;
+    font-size: 20px;
+    
+}
+
+
+.Previou_next a{
+    
+    text-decoration:none;
+}
+    
+    
+    
+/*2nd section*/
+    
+    .section_container{
+    
+    width: 100%;
+    height: auto;
+    
+    
+    
+}
+
+.section_content_wrapper{
+    display: block;
+    
+/*    max-width: 1173px;    */
+    
+    
+    
+    
+}
+    .section_top_left{
+
+        margin-top: 100px;
+        margin-left: 35px;
+width: 49%;
+    }
+    .section_top_right{
+        width: 46%;
+        
+    }
+    .section_title{
+        font-size: 23pt;
+        color: #002e5b;
+        text-align: inherit;
+    }
+    
+  
+    .span_main{
+        font-family: 'Montserrat';
+        margin-top: 12px;
+        font-size: 17pt;
+        color: #8c8c8c;
+        margin-bottom: 10px;
+    }
+    .span_content{
+        font-family: 'Segoe UI Emoji';
+        font-size: 15pt;
+        color: #333333;
+    }
+    .span_button{
+        
+        margin-top: 19px;
+        font-size: 16pt;
+        color: #002e5b;
+        margin-bottom: 0px;
+        text-align: center;
+        font-weight: bold;
+        
+    }
+    .top_yellow{
+        margin-left: 118px;
+        width: 270px;
+        height: 100px;
+        background-color: #fde52c;
+    }
+    .bot_yellow{
+        margin-left: 118px;
+        width: 270px;
+        height: 100px;
+        background-color: #fde52c;
+    }
+    
+    .middle_grey{
+        background-image: url(../img/top_bg.png);
+/*        background-color: #a1a1a1;*/
+        width: 500px;
+        height: 324px;
+        background-size: contain;
+    }
+    
+    
+    .figure_section_content_wrapper{
+        padding-bottom: 104px;
+        background-color: #f4f4f4;
+    }
+    .figure_section_left{
+        margin-top: 126px;
+        margin-left: 35px;
+        margin-right: 29px;
+    }
+    .figure{
+        position: absolute;
+    width: 53%;
+    }
+    .figure_section_right{
+        width: 50%;
+    }
+   
+    .figure_contents{
+        max-width: 97%;
+        padding-top: 101px;
+    }
+    .section_footer_container{
+        
+           background-color: #002e5b;
+    }
+    .section_footer_content_wrapper{
+        height: 94px;
+     
+    }
+    .section_footer_left span{
+        
+        color: #f4f4f4;
+        font-family: 'Montserrat';
+        font-size: 21pt;
+        
+    }
+    .section_footer_left{
+        width: 60%;
+        margin-bottom: 40px;
+        margin-left: 35px;
+        margin-top: 34px;
+    }
+      .section_footer_right{
+        margin-bottom: 24px;
+/*        width: 14%;*/
+          margin-right: 49px;
+        margin-top: 28px;
+    }
+    .Contact{
+        background-color: yellow;
+        height: 48px;
+    }
+    .Contact h4{
+        padding-top: 10px;
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+    .Contact a{
+        color: #002e5b;
+        text-decoration: none;
+    }
+    
+    
+/*Service*/
+        .section_container{
+    
+    width: 100%;
+    height: auto;
+    
+    
+    
+}
+
+.service_content_wrapper{
+    display: block;
+    width: 100%;
+/*    max-width: 1173px;    */
+    
+    
+    
+    
+}
+    .service_title{
+        margin-top: 98px;
+        
+    }
+    .service_title h3{
+        font-family: 'Montserrat';
+        font-size: 31pt;
+        text-align: center;
+        color: #002e5b;
+        
+    }
+    .service_main{
+        font-family: 'Montserrat';
+        color: #8c8c8c;
+        font-size: 21pt;
+        margin-top: 25px;
+        text-align: center;
+    }
+     .service_main_two{
+        font-family: 'Montserrat';
+        color: #8c8c8c;
+        font-size: 21pt;
+        margin-bottom: 46px;
+        text-align: center;
+    }
+    
+    .service_content{
+        height: 485px;
+    }
+    .service_one_picture{
+        
+        background-image: url("../img/consulting.jpg");
+        background-size: cover;
+/*        background-color: #69d2e7;*/
+        width: 371px;
+        height: 190px;
+    }
+    .service_two_picture{
+     background-image: url(../img/commodities.jpg);
+        background-size: contain;
+/*        background-color: #add478;*/
+        width: 371px;
+        height: 190px;
+        
+    }
+    .service_three_picture{
+        background-image: url(../img/audit.jpg);
+        background-size: cover;
+        background-position: -355px -49px;
+        width: 371px;
+        height: 190px;
+    }
+    .Service_content_one{
+        width: 31%;
+        margin-left: 35px;
+        margin-right: 20px;
+        float: left;
+    }
+     .Service_content_two{
+         width: 31%;
+         margin-top: 0px;
+         margin-left: 0px;
+         margin-right: 20px;
+        float: left;
+    }
+     .Service_content_three{
+         margin: 0px;
+         width: 31%;
+        float: left;
+    }
+    .service_content_title{
+        padding-top: 228px;
+        font-size: 19pt;
+        text-align: center;
+        font-family: 'Montserrat';
+        color: #002e5b;
+    }
+    .service_description{
+        padding-top: 28px;
+    font-family: 'Segoe UI Emoji';
+        font-size: 14pt;
+    }
+    
+   
+.service_number_wrapper{
+    background-color: #002e5b;
+    display: block;
+    width: 100%;
+    height: 360px;
+/*    max-width: 1173px;    */
+    
+    
+    
+    
+}
+    .service_number_contents{
+        
+    }
+    .service_number_container{
+        margin-top: 100px;
+            height: auto;
+    }
+
+    .numbers{
+        padding-top: 138px;
+        width: 100%;
+    }
+    .numbers_description{
+        width: 100%;
+    }
+    .number{
+        font-family: 'Montserrat';
+        font-size: 48pt;
+        color: #f4f4f4;
+        margin-right: 47px;
+        float: right;
+        width: 18%;
+        letter-spacing: 17px;
+    }
+    .number:first-child{
+        margin-left: 45px;
+    }
+    .number:last-child{
+        padding-right: 49px;
+    }
+    .number_description{
+        font-family: 'Segoe UI Emoji';
+        float: left;
+        font-size: 14pt;
+        text-align: center;
+        color: #f4f4f4;
+        width: 11%;
+    }
+    .number_description:first-child{
+        margin-left: 81px;
+    }
+    
+    .subscriber{
+        font-family: 'Segoe UI Emoji';
+        float: left;
+        font-size: 14pt;
+        text-align: center;
+        color: #f4f4f4;
+        width: 11%;
+        margin-left: 135px;
+}
+    .customer{
+        font-family: 'Segoe UI Emoji';
+        float: left;
+        font-size: 14pt;
+        text-align: center;
+        color: #f4f4f4;
+        width: 11%;
+        margin-left: 164px;
+    }
+    .number_description:last-child{
+        margin-left: 179px;
+    }
+    
+    .video_top_content_left{
+        margin-left: 35px;
+    }
+    
+    .middle_blue{
+        position: relative;
+        width: 100%;
+            background-color: #002e5b;
+        width: 500px;
+        height: 324px;
+        margin: 0px;
+    }
+    .circle{
+        position:absolute;
+        left:50%;
+        top:50%;
+        height:168px;
+        width: 168px;
+        background-color: white;
+        border: 15px solid #33587c;
+        border-radius: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .fa-play{
+        margin-top: 62px;
+        margin-left: 66px;
+    }
+    .circle a{
+        color: black;
+        text-decoration: none;
+    }
+    .video_top_content_right{
+        width: 54%;
+        margin-top: 88px;
+    }
+    .quote_content{
+        width: 100%;
+        background-color: #002e5b;
+    }
+    .fa-quote-left{
+        padding-top: 125px;
+        font-size: 48pt;
+        margin-left: 518px;
+        color: white;
+        padding-bottom: 50px;
+    }
+    .quote_description{
+        margin-bottom: 25px;
+        color: white;
+        font-family: 'Myriad Pro';
+        font-size: 15pt;
+        text-align: center;
+            
+    }
+    
+    .quote_description:last-child{
+        margin-bottom: 78px;
+    }
+    .quote_author{
+         margin-top: 72px;
+        color: white;
+        font-family: 'Myriad Pro';
+        font-size: 20.03pt;
+        text-align: center;
+        padding-bottom: 128px;
+        
+        
+    }
+    .content_headquarter{
+        border: 5px solid #f3f3f3;
+        width: 30%;
+        margin-left: 18px;
+    }
+    .map{
+        height: auto;
+        width: auto;
+        margin: 0px;
+        float: none;
+    }
+    .title{
+        margin-top: 42px;
+        margin-left: 38px;
+        font-family: 'Montserrat';
+        margin-bottom: 30px;
+        font-size: 16pt;
+        color: #002e5b;
+        margin-right: 81px;
+    }
+    .fa-map-marker-alt{
+    font-size: 1em;
+}
+.fa-mobile-alt{
+    font-size: 1em;
+}
+.fa-envelope{
+    font-size: 1em;
+}
+    .contact_nav{
+        padding-top: 7px;
+    }
+   
+    .contact_mobile{
+        margin-top: 56px;
+        margin-bottom: 28px;
+    }
+    .contact_mail{
+        padding-bottom: 45px;
+    }
+    .head{
+        font-size: 16pt;
+        font-family: 'Segoe UI Emoji';
+        padding-right: 10px;
+        padding-bottom: 17px;
+    }
+    .tail{
+        font-size: 16pt;
+        font-family: 'Segoe UI Emoji';
+        padding-right: 10px;
+        padding-bottom: 17px;
+    }
+    
+    .head:first-child{
+        padding-bottom: 0px;
+    }
+    .contact_numbers_icon{
+        margin-left: 41px;
+    }
+    .contact_numbers_description{
+        margin-right: 63px;
+    }
+    
+/*footer*/
+    .footer_wrapper{
+        margin-top: 100px;
+        background-color: #002e5b;
+    }
+    .footer_white{
+        font-family: 'Montserrat';
+        font-weight: bold;
+        color: #ffffff;
+        font-size: 16pt;
+    }
+    .footer_yellow{
+        font-family: 'Montserrat';
+        font-weight: bold;
+        color: #fde52c;
+        font-size: 16pt;
+    }
+    .footer_content{
+        padding-top: 33px;
+        padding-bottom: 33px;
+        margin-left: 9px;
+        margin-right: 20px;
+    }
+    .fa-facebook-f{
+        color: white;
+        padding-right: 20px;
+    }
+    .fa-twitter{
+        color: white;
+        padding-right: 20px;
+    }
+    .fa-google-plus-g{
+        color: white;
+        padding-right: 20px;
+    }
+    .fa-instagram{
+        color: white;
+    }
+    
+    .content_headquarter:hover{
+        cursor: pointer;
+    }
+    .figure:hover{
+        cursor: zoom-in;
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
+/*1024*/
+
+
+@media (min-width: 1024px){
+    .main_container{
+        width: 100%;
+        height: 100%;
+/*    min-width:1200px;*/
+    
+}
+
+.header_container{
+    
+    width: 100%;
+    height: 800px;
+    background-color: #001c37;
+    
+    
+}
+
+.header_content_wrapper{
+    display: block;
+    
+    max-width: 1173px;    
+    height: 800px;
+    
+    background-image: url(../img/full_back_01.png);
+    background-size: cover;
+    background-position: -250px 30px;
+    background-repeat: no-repeat;
+    
+}
+    
+    .left_arrow{
+        margin-right: 25px;
+        height: auto;
+        width: 17px;
+    }
+    .Right_arrow{
+        height: auto;
+        width: 17px;
+    }
+    
+.header_content_bottom{
+        width: 100%;
+    }
+    
+
+    .hamburger_dropdown{
+        display: none;
+    }
+    .fa-bars{
+        display: none;
+    }
+    
+.logo{
+    position: absolute;
+    width: 20%;
+    padding-top: 50px;
+    margin-left: 30px;
+    
+}
+    .english_language{
+    width: auto;
+    height: auto;
+}
+    
+.logo_img{
+    width: 179px;
+    height: auto;
+}    
+
+.nav_menu{
+    max-width: 1024px;
+    width: 46%;    
+}
+    
+.nav_menu_contents{
+    
+   margin-right: 118px; 
+    width: 100%;
+    height: 32px;
+}
+
+    .nav_menu_contents a{
+        color: #ffffff;
+        text-decoration: none;
+    }
+.nav_style{
+    display: inline-block;
+    margin-top: 70px;
+    list-style: none;
+    font-size: 14px;
+    font-family: Arial;
+    float: left;
+    margin-right: 41px;
+    color: #ffffff;
+}
+.nav_style_button{
+    list-style: none;
+    padding-top: 59px;
+    
+}
+.dropdown{
+    
+    cursor: pointer;
+}
+
+
+.language{
+    
+    margin-top: 50px;
+   margin-right: 375px; 
+    margin-left: 41px;
+}
+
+
+.Previou_next{
+    margin-top: 427px;
+    margin-left: 38px;
 }
 
 .Banner_text{
@@ -108,21 +799,22 @@
 
 .learn_more_text{
     position: absolute;
-    width: 50%;
-    margin-top: 135px;
+    width: 40%;
+    margin-top: 51px;
     
-    margin-left: 144px;
+    margin-left: 146px;
     
     font-size: 21px;
     
 }
 .Banner_text a{
-    color: yellow;
+    color: #f2db29;
     text-decoration: none;
 }
 
 .previous_next_text{
-    color: yellow;
+    font-family: 'Montserrat';
+    color: #f2db29;
     font-size: 12.4px;
     
 }
@@ -133,4 +825,513 @@
     text-decoration:none;
 }
     
+    
+    
+/*2nd section*/
+    
+    .section_container{
+    
+    width: 100%;
+    height: auto;
+    
+    
+    
 }
+
+.section_content_wrapper{
+    display: block;
+    
+/*    max-width: 1173px;    */
+    
+    
+    
+    
+}
+    .section_top_left{
+
+        margin-top: 100px;
+        margin-left: 35px;
+        width: 49%;
+/*        text-align: center;*/
+    }
+    .section_top_right{
+        width: 44%;
+        
+    }
+    .section_title{
+        font-size: 30pt;
+        color: #002e5b;
+        text-align: inherit;
+    }
+    
+  
+    .span_main{
+        font-family: 'Montserrat';
+        margin-top: 12px;
+        font-size: 16pt;
+        color: #8c8c8c;
+        margin-bottom: 10px;
+    }
+    .span_content{
+        font-family: 'Segoe UI Emoji';
+        font-size: 15pt;
+        color: #333333;
+    }
+    .span_button{
+        
+        margin-top: 19px;
+        font-size: 16pt;
+        color: #002e5b;
+        margin-bottom: 0px;
+        text-align: center;
+        font-weight: bold;
+    }
+    .top_yellow{
+        margin-left: 118px;
+        width: 270px;
+        height: 100px;
+        background-color: #fde52c;
+    }
+    .bot_yellow{
+        margin-left: 118px;
+        width: 270px;
+        height: 100px;
+        background-color: #fde52c;
+    }
+    .middle_grey{
+        background-image: url(../img/top_bg.png);
+/*        background-color: #a1a1a1;*/
+        width: 500px;
+        height: 324px;
+        background-size: contain;
+    }
+    
+    
+    .figure_section_content_wrapper{
+        padding-bottom: 204px;
+        background-color: #f4f4f4;
+    }
+    .figure_section_left{
+        margin-top: 126px;
+        margin-left: 35px;
+        margin-right: 29px;
+    }
+    .figure{
+        position: absolute;
+    width: 42%;
+    }
+    .figure_section_right{
+        width: 50%;
+    }
+   
+    .figure_contents{
+        max-width: 97%;
+        padding-top: 101px;
+    }
+    .section_footer_container{
+        
+           background-color: #002e5b;
+    }
+    .section_footer_content_wrapper{
+        height: 94px;
+     
+    }
+    .section_footer_left span{
+        
+        color: #f4f4f4;
+        font-family: 'Montserrat';
+        font-size: 21pt;
+        
+    }
+    .section_footer_left{
+        width: 60%;
+        margin-bottom: 40px;
+        margin-left: 35px;
+        margin-top: 34px;
+    }
+      .section_footer_right{
+        margin-bottom: 24px;
+/*        width: 14%;*/
+          margin-right: 49px;
+        margin-top: 28px;
+    }
+    .Contact{
+        background-color: yellow;
+        height: 48px;
+    }
+    .Contact h4{
+        padding-top: 10px;
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+    .Contact a{
+        color: #002e5b;
+        text-decoration: none;
+    }
+    
+    
+/*Service*/
+        .section_container{
+    
+    width: 100%;
+    height: auto;
+    
+    
+    
+}
+
+.service_content_wrapper{
+    display: block;
+    width: 100%;
+/*    max-width: 1173px;    */
+    
+    
+    
+    
+}
+    .service_title{
+        margin-top: 98px;
+        
+    }
+    .service_title h3{
+        font-family: 'Montserrat';
+        font-size: 31pt;
+        text-align: center;
+        color: #002e5b;
+        
+    }
+    .service_main{
+        font-family: 'Montserrat';
+        color: #8c8c8c;
+        font-size: 21pt;
+        margin-top: 25px;
+        text-align: center;
+    }
+     .service_main_two{
+        font-family: 'Montserrat';
+        color: #8c8c8c;
+        font-size: 21pt;
+        margin-bottom: 46px;
+        text-align: center;
+    }
+    
+    .service_content{
+        height: 485px;
+    }
+    .service_one_picture{
+        
+        background-image: url("../img/consulting.jpg");
+        background-size: cover;
+/*        background-color: #69d2e7;*/
+        width: 371px;
+        height: 190px;
+    }
+    .service_two_picture{
+     background-image: url(../img/commodities.jpg);
+/*        background-color: #add478;*/
+        width: 371px;
+        height: 190px;
+        background-size: contain;
+    }
+    .service_three_picture{
+        background-image: url(../img/audit.jpg);
+        background-size: cover;
+        background-position: -355px -49px;
+        width: 371px;
+        height: 190px;
+    }
+    .Service_content_one{
+        width: 31%;
+        margin-left: 35px;
+        margin-right: 20px;
+        float: left;
+    }
+     .Service_content_two{
+         width: 31%;
+         margin-top: 0px;
+         margin-left: 0px;
+         margin-right: 20px;
+        float: left;
+    }
+     .Service_content_three{
+         margin: 0px;
+         width: 31%;
+        float: left;
+    }
+    .service_content_title{
+        padding-top: 228px;
+        font-size: 19pt;
+        text-align: center;
+        font-family: 'Montserrat';
+        color: #002e5b;
+    }
+    .service_description{
+        padding-top: 28px;
+    font-family: 'Segoe UI Emoji';
+        font-size: 14pt;
+    }
+    
+   
+.service_number_wrapper{
+    
+    display: block;
+    width: 100%;
+    height: 360px;
+    max-width: 1200px;    
+    
+    
+    
+    
+}
+    
+    .service_number_container{
+        background-color: #002e5b;
+        margin-top: 100px;
+            height: auto;
+    }
+
+    .numbers{
+        padding-top: 138px;
+        width: 100%;
+    }
+    .numbers_description{
+        width: 100%;
+    }
+    .number{
+        font-family: 'Montserrat';
+        font-size: 48pt;
+        color: #f4f4f4;
+        margin-right: 47px;
+        float: right;
+        width: 18%;
+        letter-spacing: 17px;
+    }
+    .number:first-child{
+        margin-left: 45px;
+    }
+    .number:last-child{
+        padding-right: 49px;
+    }
+    .number_description{
+        font-family: 'Segoe UI Emoji';
+        float: left;
+        font-size: 14pt;
+        text-align: center;
+        color: #f4f4f4;
+        width: 11%;
+    }
+    .number_description:first-child{
+        margin-left: 81px;
+    }
+    
+    .subscriber{
+        font-family: 'Segoe UI Emoji';
+        float: left;
+        font-size: 14pt;
+        text-align: center;
+        color: #f4f4f4;
+        width: 11%;
+        margin-left: 135px;
+}
+    .customer{
+        font-family: 'Segoe UI Emoji';
+        float: left;
+        font-size: 14pt;
+        text-align: center;
+        color: #f4f4f4;
+        width: 11%;
+        margin-left: 164px;
+    }
+    .number_description:last-child{
+        margin-left: 179px;
+    }
+    
+    .video_top_content_left{
+        margin-left: 35px;
+    }
+    
+    .middle_blue{
+        position: relative;
+        width: 100%;
+            background-color: #002e5b;
+        width: 500px;
+        height: 324px;
+        margin: 0px;
+    }
+    .circle{
+        position:absolute;
+        left:50%;
+        top:50%;
+        height:168px;
+        width: 168px;
+        background-color: white;
+        border: 15px solid #33587c;
+        border-radius: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .fa-play{
+        margin-top: 62px;
+        margin-left: 66px;
+    }
+    .circle a{
+        color: black;
+        text-decoration: none;
+    }
+    .video_top_content_right{
+        width: 54%;
+        margin-top: 88px;
+    }
+    .quote_content{
+        width: 100%;
+        background-color: #002e5b;
+    }
+    .fa-quote-left{
+        padding-top: 125px;
+        font-size: 48pt;
+        margin-left: 518px;
+        color: white;
+        padding-bottom: 50px;
+    }
+    .quote_description{
+        margin-bottom: 25px;
+        color: white;
+        font-family: 'Myriad Pro';
+        font-size: 15pt;
+        text-align: center;
+            
+    }
+    
+    .quote_description:last-child{
+        margin-bottom: 78px;
+    }
+    .quote_author{
+         margin-top: 72px;
+        color: white;
+        font-family: 'Myriad Pro';
+        font-size: 20.03pt;
+        text-align: center;
+        padding-bottom: 128px;
+        
+        
+    }
+    .content_headquarter{
+        border: 5px solid #f3f3f3;
+        width: 30%;
+        margin-left: 18px;
+    }
+    .content_headquarter:hover{
+        cursor: pointer;
+    }
+    .map{
+        height: auto;
+        width: auto;
+        margin: 0px;
+        float: none;
+    }
+    .title{
+        margin-top: 42px;
+        margin-left: 38px;
+        font-family: 'Montserrat';
+        margin-bottom: 30px;
+        font-size: 16pt;
+        color: #002e5b;
+        margin-right: 81px;
+    }
+    .fa-map-marker-alt{
+    font-size: 1em;
+}
+.fa-mobile-alt{
+    font-size: 1em;
+}
+.fa-envelope{
+    font-size: 1em;
+}
+    .contact_nav{
+        padding-top: 7px;
+    }
+   
+    .contact_mobile{
+        margin-top: 56px;
+        margin-bottom: 28px;
+    }
+    .contact_mail{
+        padding-bottom: 45px;
+    }
+    .head{
+        font-size: 16pt;
+        font-family: 'Segoe UI Emoji';
+        padding-right: 10px;
+        padding-bottom: 17px;
+    }
+    .tail{
+        font-size: 16pt;
+        font-family: 'Segoe UI Emoji';
+        padding-right: 10px;
+        padding-bottom: 17px;
+    }
+    
+    .head:first-child{
+        padding-bottom: 0px;
+    }
+    .contact_numbers_icon{
+        margin-left: 41px;
+    }
+    .contact_numbers_description{
+        margin-right: 63px;
+    }
+    
+/*footer*/
+    .footer_wrapper{
+        margin-top: 100px;
+        background-color: #002e5b;
+    }
+    .footer_white{
+        font-family: 'Montserrat';
+        font-weight: bold;
+        color: #ffffff;
+        font-size: 16pt;
+    }
+    .footer_yellow{
+        font-family: 'Montserrat';
+        font-weight: bold;
+        color: #fde52c;
+        font-size: 16pt;
+    }
+    .footer_content{
+        padding-top: 33px;
+        padding-bottom: 33px;
+        margin-left: 9px;
+        margin-right: 20px;
+    }
+    .fa-facebook-f{
+        color: white;
+        padding-right: 20px;
+    }
+    .fa-twitter{
+        color: white;
+        padding-right: 20px;
+    }
+    .fa-google-plus-g{
+        color: white;
+        padding-right: 20px;
+    }
+    .fa-instagram{
+        color: white;
+    }
+    .figure:hover{
+        cursor: zoom-in;
+    }
+    .contact_container{
+        
+    }
+    .contact_wrapper{
+        
+    }
+}
+
+
+
+
+
+
+
