@@ -1,0 +1,45 @@
+#carousel_container{
+    width: 800px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    margin: 10px auto;
+}
+#carousel_image_wrapper{
+    position: absolute;
+}
+
+
+#carousel_image_wrapper img{
+    width: 800px;
+    height: 500px;
+    display: block;
+    float: left;
+}
+
+
+
+#carousel_container_1{
+    width: 800px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 40px;
+    margin-left: 400px;
+}
+#carousel_image_wrapper_1{
+    position: absolute;
+}
+
+
+#carousel_image_wrapper_1 img{
+    width: 800px;
+    height: 500px;
+    display: block;
+    float: left;
+}
+
+
+
+
+
