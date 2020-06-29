@@ -1,3 +1,4 @@
+//updated
 function Wrapper(containerId, timer, imageContainerId, images) {
     // console.log(containerId);
     // console.log(timer);
@@ -142,7 +143,7 @@ function Wrapper(containerId, timer, imageContainerId, images) {
     start();
 
     function start() {
-        console.log('start');
+        // console.log('start');
         // clearInterval(mainInterval);
             next_turn=0;
         previous_turn=0;
@@ -174,8 +175,8 @@ function Wrapper(containerId, timer, imageContainerId, images) {
 
     function slide() {
         
-        console.log('slide suru');
-        clearTimeout(pause);
+        // console.log('slide suru');
+        // clearTimeout(pause);
         
         clearInterval(PointInterval);
         if (dot_slide == false) {
@@ -191,11 +192,11 @@ function Wrapper(containerId, timer, imageContainerId, images) {
         slider.style.left = initialPos + 'px';
         
         if (initialPos == 0) {
-            console.log('slide ko first loop');
-            // clearTimeout(pause);
-            clearInterval(nextInterval);
-            // clearInterval(previousInterval);
+            // console.log('slide ko first loop');
             
+            clearInterval(nextInterval);
+            
+            clearTimeout(pause);
             // console.log('slide first loop');
             direction = -1;
             way = 1;
@@ -203,10 +204,27 @@ function Wrapper(containerId, timer, imageContainerId, images) {
         } else if (initialPos == ((images.length - 1) * width * direction)) {
             console.log('slide ko second loop');
             
-            // clearTimeout(pause);
-            // clearInterval(nextInterval);
+            clearTimeout(pause);
             clearInterval(previousInterval);
-            // console.log('slide first+1 loop');
+            console.log(index);
+            console.log(images.length);
+            if(index <(-images.length)  || index >images.length )
+            {   
+                console.log('0 banaune');
+                index=0;
+                console.log(index);
+                start();
+            }
+            // console.log(index);
+            
+
+            
+            
+            
+            
+            
+            
+            
             direction = 1;
             way = -1;
 
@@ -214,7 +232,7 @@ function Wrapper(containerId, timer, imageContainerId, images) {
 
         if ((initialPos == index * width * direction) || (initialPos == -(index * width * direction))) {
             
-
+            // console.log('slide ko 3rd loop');
             // console.log(initialPos);    
             clearInterval(mainInterval);
             clearInterval(nextInterval);
@@ -223,8 +241,8 @@ function Wrapper(containerId, timer, imageContainerId, images) {
             
             
             if(previous_turn ==0 && next_turn ==0 && pause_turn==0){
-                // console.log('pause ko if');
-                console.log('slide  ko 3rd loop suru');
+            
+                // console.log('slide  ko 4th loop suru');
                 pause_turn=1;
                 pause_slide();
             }
@@ -249,7 +267,7 @@ function Wrapper(containerId, timer, imageContainerId, images) {
     }
 
     function pause_slide(){
-        console.log('pause ma pugyo');
+        // console.log('pause ma pugyo');
         // clearInterval(mainInterval);
         //     clearInterval(nextInterval);
         //     clearInterval(PointInterval);
@@ -266,7 +284,7 @@ function Wrapper(containerId, timer, imageContainerId, images) {
                     clearInterval(nextInterval);
             clearInterval(PointInterval);
             clearInterval(previousInterval);
-                    console.log('pause_first set');      
+                    // console.log('pause_first set');      
                     index -= traverse_length +1;
                     pause = setTimeout(start,pause_speed);
                 }
@@ -274,7 +292,7 @@ function Wrapper(containerId, timer, imageContainerId, images) {
                     clearInterval(nextInterval);
                 clearInterval(PointInterval);
                 clearInterval(previousInterval);
-                    console.log('pause sexond');
+                    // console.log('pause sexond');
                     pause = setTimeout(start,pause_speed);
                     index++;
                     // if (direction == -1) {
@@ -296,7 +314,7 @@ function Wrapper(containerId, timer, imageContainerId, images) {
             clearInterval(PointInterval);
             clearInterval(previousInterval);
                 start();
-                console.log('no pause');
+                // console.log('no pause');
             }
             pause_turn=0;
             
@@ -316,7 +334,7 @@ function Wrapper(containerId, timer, imageContainerId, images) {
         
         if (next_turn == 1) {
             if (initialPos == -(image_width - 10)) {
-                console.log("next clicked", initialPos);
+                // console.log("next clicked", initialPos);
                 // index -= traverse_length + 1;
                 // next_turn=0;
 

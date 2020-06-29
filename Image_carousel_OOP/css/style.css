@@ -1,10 +1,15 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
 #carousel_container{
-    width: 800px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     position: relative;
     overflow: hidden;
     margin: 10px auto;
 }
+
 #carousel_image_wrapper{
     position: absolute;
 }
@@ -12,21 +17,21 @@
 
 #carousel_image_wrapper img{
     width: 800px;
-    height: 500px;
+    height: 300px;
     display: block;
     float: left;
 }
 
 
-
 #carousel_container_1{
-    width: 800px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     position: relative;
     overflow: hidden;
     margin-top: 40px;
-    margin-left: 400px;
+    margin-left: 10px;
 }
+
 #carousel_image_wrapper_1{
     position: absolute;
 }
@@ -34,7 +39,7 @@
 
 #carousel_image_wrapper_1 img{
     width: 800px;
-    height: 500px;
+    height: 300px;
     display: block;
     float: left;
 }
@@ -43,3 +48,21 @@
 
 
 
+@media screen and (min-width: 480px) {
+    #carousel_container{
+        width: 800px;
+        height: 300px;
+        position: relative;
+        overflow: hidden;
+        margin: 10px auto;
+    } 
+    #carousel_container_1{
+        width: 800px;
+        height: 300px;
+        position: relative;
+        overflow: hidden;
+        margin-top: 40px;
+        margin-left: 630px;
+    }    
+    
+  }
