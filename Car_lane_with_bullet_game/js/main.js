@@ -394,6 +394,7 @@ function Game() {
         gameOver.removeChild(that.gameOverTxt);
         gameOver.removeChild(that.currentScoreTxt);
         gameOver.removeChild(that.playAgainBtn);
+        gameOver.removeChild(that.final_highscore);
         // clearInterval(interval);
 
         for (var i = 0; i < enemyCars.length; i++) {
