@@ -25,8 +25,8 @@ function MainCar(parentElement) {
 
     this.draw = function() {
         
-        this.left = (that.parentElement.offsetWidth / 2) - (that.width / 2); //220
-        this.top = 750;
+        this.left = (that.parentElement.offsetWidth / 2) - (that.width / 2); 
+        this.top = 550;
 
         this.element.style.left = this.left + 'px';
         console.log('car ko class', this.left);
