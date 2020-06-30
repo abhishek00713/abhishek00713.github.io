@@ -1,0 +1,46 @@
+.main-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.title {
+    margin: 10px auto;
+    position: relative;
+    width: 540px;
+    height: 60px;
+    font-family: Impact, Haettenschweiler, sans-serif;
+    font-size: 60px;
+    color:;
+    text-align: center;
+}
+
+.car_container {
+    margin: 0px auto;
+    position: relative;
+    width: 540px;
+    height: 900px;
+    overflow: hidden;
+}
+
+.car_container .road {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background: url('../img/road2.png');
+    background-size: 539px , 600px;
+    
+    background-repeat: repeat-y;
+    position: absolute;
+}
+
+.game-over {
+    width: 100%;
+    height: 100%;
+    margin: auto auto;
+    text-align: center;
+    position: absolute;
+    z-index: 2;
+        
+    display: none;
+}
