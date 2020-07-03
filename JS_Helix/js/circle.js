@@ -20,7 +20,7 @@ function Circle(ctx, phase) {
     this.drawCircle = function() {
 
         ctx.beginPath();
-        ctx.fillStyle = "blue";
+        ctx.fillStyle = "yellow";
         ctx.arc(this.x, this.y, this.circle_radius, 0, Math.PI * 2);
         ctx.closePath();
         ctx.fill();
