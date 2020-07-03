@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    
+}
+
+.main_container {
+    width: 100%;
+}
+
+canvas {
+    display: inline-block;
+    border: 2px solid red;
+    margin: 50px;
+    margin-left: 400px;
+}
