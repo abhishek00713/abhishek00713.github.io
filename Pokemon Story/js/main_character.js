@@ -283,11 +283,12 @@ function Characters(Game,canvas, context, image) {
         for(var i=0;i<doorTiles.length;i++){
             if(tile == 4563 || tile == 4564){
                 // context.clearRect(0,0,canvas.width,canvas.height);
-                if(this.player_x ==244){
+                if(this.player_x >=200 && this.player_x<=300 && this.player_y==314) {
                     console.log('first if');
                     this.player_x=510;
                 this.player_y=810;
                 world =1;
+                return;
                 }
                 else{
                     console.log('4th hoouse',this.player_x);
