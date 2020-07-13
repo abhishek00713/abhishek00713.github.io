@@ -162,6 +162,9 @@ Game.drawLayer = function (layer) {
             else if (world==4) {
                 var tile = professor_room.getProfessorTile(layer,c,r);
             }
+            else if (world==5) {
+                var tile = room_four.getRoomFourTile(layer,c,r);
+            }
             
             
             
@@ -230,6 +233,8 @@ Game.tick = function (elapsed) {
     }else if (world==3) {
         this.tileAtlas =imageManager.getImage("room");
     }else if (world==4) {
+        this.tileAtlas =imageManager.getImage("room");
+    }else if (world==5) {
         this.tileAtlas =imageManager.getImage("room");
     }
 
