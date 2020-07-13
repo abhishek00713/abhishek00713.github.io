@@ -75,17 +75,19 @@ function setSlideIndex(val){
         direction=-1;
         initialPos = val * width * direction;
         console.log(initialPos);
-        
+
+    dot_index=val;
     clearInterval(mainInterval);
     clearInterval(nextInterval);
     clearInterval(previousInterval);
+    dot_slide=true;
     PointInterval=setInterval(slide);
         
     
 }
-
-
-
+var dot_index=0;
+var dot_slide = false;
+var point = false;
 var width = 800;
 var height = container.clientHeight;
 
@@ -96,10 +98,11 @@ var image_width = width *(images.length-1);
 slider.style.width = max_width + 'px';
 
 slider.style.height = height;
-
+var next_turn=0;
+var previous_turn=0;
 var mainInterval;
 var initialPos = 0;
-var speed = 1;
+var speed = 10;
 var direction = -1;
 var index = 0;
 var way = 1;
@@ -112,12 +115,19 @@ start();
 
 function start() {
     mainInterval = setInterval(slide);
+    
 }
 
 function slide() {
     
     clearInterval(PointInterval);
-    changeDotsColor();
+    if(dot_slide == false){
+        changeDotsColor();
+    }
+    else{
+        changeDotIndexColor();
+    }
+    
     // console.log(initialPos);
     slider.style.left = initialPos + 'px';
     
@@ -140,12 +150,13 @@ function slide() {
     clearInterval(mainInterval);
         clearInterval(nextInterval);
         clearInterval(previousInterval);
-
-        if (direction == -1) {
-            index++;
-        } else {
-            index--;
-        }
+        next_turn=0;
+        previous_turn=0;
+        // if (direction == -1) {
+        //     index++;
+        // } else {
+        //     index--;
+        // }
 
  
         
@@ -161,13 +172,24 @@ function slide() {
 
 
 next.addEventListener('click', function () {
-    way = 1;
-        direction = -1;
-     
-    if (initialPos == -(image_width -1) ) {
-        index-=traverse_length;   
+    // way = 1;
+    //     direction = -1;
+    next_turn++;
+        if(next_turn==1)
+        {
+    if (initialPos == -(image_width -10) ) {
+        console.log("next clicked",initialPos);     
+        index-=traverse_length+1;   
 
     }
+    
+    else {
+        way = 1;
+        direction = -1;
+        index++;
+    }
+    
+}
         
     
     clearInterval(mainInterval);
@@ -179,14 +201,22 @@ next.addEventListener('click', function () {
 
 
 previous.addEventListener('click', function () {
-    way =-1;
-    direction=1;
+    //  way =-1;
+    // direction=1;
+    previous_turn++;
+    if(previous_turn==1){
+    if (initialPos == -10 ) {
 
-    if (initialPos == -1 ) {
-     
-        index+=traverse_length;
+     console.log("previous clicked",initialPos);     
+        index+=traverse_length+1;
+    }
+    else{
+        way = -1;
+        direction = 1;
+        index--;
     }
     
+} 
     
 
     clearInterval(mainInterval);
@@ -200,13 +230,21 @@ previous.addEventListener('click', function () {
 
 
 function changeDotsColor() {
-    for (var i = 0; i < dot.length; i++) {
+    //esma i<= images.length garera milxa but error
+    for (var i = 0; i < images.length; i++) {
         if ((initialPos == i * width * direction * way )) {
             dot[i].style.backgroundColor = "red";
         } else {
-            dot[i].style.backgroundColor = 'transparent';
+            
+                dot[i].style.backgroundColor = 'transparent';
             }
             
     }
-     
 }
+    function changeDotIndexColor() {
+        for (var i = 0; i < images.length; i++) {
+            dot[i].style.backgroundColor = 'transparent';
+    }
+    dot[dot_index].style.backgroundColor = "red";
+}   
+     

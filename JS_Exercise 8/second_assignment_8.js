@@ -4,7 +4,7 @@ function Point(x, y) {
     this.x = x;
     this.y = y;
     
-    this.color = 'white';
+    this.color = 'blue';
     this.point = document.createElement("div");
 
     // Methods
@@ -109,7 +109,7 @@ function Point(x, y) {
   points = [];
   
   
-  for (let i = 0; i < 2000; i++) {
+  for (let i = 0; i < 20; i++) {
     x = Math.random() * 600;
     y = Math.random() * 600;
     
