@@ -76,5 +76,8 @@ var map = {
 
     getTile: function (layer, col, row) {
         return this.layers[layer][row * map.cols + col];
+    },
+    removeTile:function(layer,col,row){
+        this.layers[layer][row * map.cols + col]=-1;
     }
 };
