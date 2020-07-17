@@ -1321,7 +1321,7 @@ function Characters(Game, canvas, context, image) {
                     this.player_y = 810;
                     world = 10;
                 }
-            }
+            
              else if (tile == 1426) {
                 this.player_x=510;
                 this.player_y=810;
@@ -1343,6 +1343,7 @@ function Characters(Game, canvas, context, image) {
                 
             }
         }
+    }
     }
     this.RoomCollision = function () {
 
