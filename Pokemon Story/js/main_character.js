@@ -263,6 +263,8 @@ function Characters(Game,canvas, context, image) {
             tile = second_room.getSecondRoomTile(1, column, row);
         }else if (world==4) {
              tile = professor_room.getProfessorTile(1,column,row);
+        }else if (world==5) {
+            tile = room_four.getRoomFourTile(1,column,row);
         }
         
         
@@ -302,9 +304,20 @@ function Characters(Game,canvas, context, image) {
                 this.player_y=810;
                 world =2;
             }else if(tile == 4244 ){
-                this.player_x=510;
+                if(this.player_x >=200 && this.player_x<=300 && this.player_y==748) {
+                    console.log('first if');
+                    this.player_x=510;
                 this.player_y=810;
                 world =3;
+                return;
+                }
+                else{
+                    
+                    this.player_x=510;
+                this.player_y=810;
+                    world =5;
+                }
+                
             }
         }
     }
@@ -320,6 +333,19 @@ function Characters(Game,canvas, context, image) {
 
                 
             }
+            else if(tile ==20 || tile ==21 || tile ==22)
+            {
+                
+                this.player_y-=85;
+                world =0;
+            }
+            else if(tile ==3348 || tile ==3349 || tile ==3350)
+            {
+                // this.player_x-= 340;
+                // this.player_y-= 150;
+                world =0;
+            }
+            
             //  else if (tile == 1426) {
             //     this.player_x=510;
             //     this.player_y=810;
@@ -384,6 +410,12 @@ function Characters(Game,canvas, context, image) {
             // Side5.drawSideCharacter();
         }
         else if(world ==4){
+            //hareko room ko laagi harek collision
+            Side1.drawSideCharacter();
+            Side4.drawSideCharacter();
+            // Side5.drawSideCharacter();
+        }
+        else if(world ==5){
             //hareko room ko laagi harek collision
             Side1.drawSideCharacter();
             Side4.drawSideCharacter();
