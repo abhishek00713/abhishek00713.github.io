@@ -16,6 +16,8 @@ function Pokemon(context,image){
     }
     this.drawPokemonCharacter= function(){
         if(this.pokedraw==true){
+            backgroundMusic.pause();
+                    pokemonBattle.play();
             this.context.drawImage(img,
                 0*this.width +4, 0*this.height, this.width, this.height,
                Math.floor(this.x - player_camera.x), Math.floor(this.y - player_camera.y), scaledWidth, scaledHeight);

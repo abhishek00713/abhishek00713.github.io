@@ -202,6 +202,7 @@ function Characters(Game, canvas, context, image) {
             talkTime--;
         }
         if(keyword ==32){
+            backgroundMusic.play();
             world=0;
         }
 
@@ -223,14 +224,21 @@ function Characters(Game, canvas, context, image) {
         else if (keyword == 80) {
             
             pokeballs.setXY(400, 580);
+
             pokeballs.throwPokeBall();
+
 
 
         }
         else if (keyword == 82) {
             this.changeToNormal();
+            pokemonBattle.pause();
+            backgroundMusic.pause();
+            Run.play();
             world = this.currentWorld;
-
+            
+            
+            backgroundMusic.play();
         }
         else if (keyword == 27) {
             world = this.currentWorld;
@@ -273,7 +281,8 @@ function Characters(Game, canvas, context, image) {
         }
         else if (keyword == 39) {
 
-
+            smashSound.pause();
+            backgroundMusic.play();
             spriteX = 0;
             spriteY = 2;
 
@@ -340,7 +349,8 @@ function Characters(Game, canvas, context, image) {
         }
         else if (keyword == 40) {
 
-
+            snorlaxSound.pause();
+            backgroundMusic.play();
             spriteX = 0;
             spriteY = 0;
 
@@ -389,6 +399,7 @@ function Characters(Game, canvas, context, image) {
             tile = map.getTile(1, column, row);
 
             if (tile == 970) {
+
                 grasswalkduration--;
                 if (grasswalkduration == 0) {
                     this.currentWorld = world;
@@ -397,8 +408,9 @@ function Characters(Game, canvas, context, image) {
                     temporary_y = y;
 
                     this.changeToBigBoy();
+                    
                     world = 11;
-                    grasswalkduration = Math.floor(Math.random() * 700+200);
+                    grasswalkduration = Math.floor(Math.random() * 1000+500);
                     return true;
                 }
 
@@ -417,9 +429,11 @@ function Characters(Game, canvas, context, image) {
                     if (Cut == 1) {
                     
                         sideChar = this.sideCharCollision(x, y);
-
+                        backgroundMusic.pause();
+                        cutSound.play()
                         map.removeTile(1, column, row);
                         Cut = 0;
+                        backgroundMusic.play();
                         return true;
                     }
                     else {
@@ -533,11 +547,12 @@ function Characters(Game, canvas, context, image) {
                 else if (tile == 1005) {
                     
                     if (smash == 1) {
-                    
+                        
                         sideChar = this.sideCharCollision(x, y);
 
                         route.removeRouteTile(1, column, row);
                         smash = 0;
+                        
                         return true;
                     }
                     else {
@@ -704,8 +719,10 @@ function Characters(Game, canvas, context, image) {
         else if (world == 4) {
             if (x >= 114 && x <= 180 && y >= 246 && y <= 322) {
                 talk10 = true;
-
+                backgroundMusic.pause();
+                Item.play();
                 talkTime = 10;
+                backgroundMusic.play();
                 return true;
             }
             else if (x >= 562 && x <= 634 && y >= 162 && y <= 228) {
@@ -724,8 +741,10 @@ function Characters(Game, canvas, context, image) {
         else if (world == 5) {
             if (x >= 114 && x <= 180 && y >= 360 && y <= 428) {
                 talk13 = true;
-
+                backgroundMusic.pause();
+                Item.play();
                 talkTime = 10;
+                backgroundMusic.play();
                 return true;
             }
             else if (x >= 584 && x <= 634 && y >= 100 && y <= 136) {
@@ -749,6 +768,7 @@ function Characters(Game, canvas, context, image) {
             }
             else if (x >= 378 && x <= 380 && y >= 534 && y <= 552 && smash == 1) {
                 talksmash = true;
+                
                 talkTime = 10;
                 return true;
             }
@@ -760,14 +780,19 @@ function Characters(Game, canvas, context, image) {
             }
             else if (x >= 774 && x <= 846 && y >= 100 && y <= 128) {
                 talk16 = true;
-
+                backgroundMusic.pause();
+                Item.play();
                 talkTime = 10;
+                backgroundMusic.play();
                 return true;
             }
             else if (x >= 116 && x <= 170 && y >= 100 && y <= 170) {
                 talk17 = true;
-
+                backgroundMusic.pause();
+                Item.play();
                 talkTime = 10;
+                backgroundMusic.play();
+                
                 return true;
             }
             else if (x >= 562 && x <= 626 && y >= 720 && y <= 762) {
@@ -778,21 +803,28 @@ function Characters(Game, canvas, context, image) {
             }
             else if (x >= 264 && x <= 314 && y >= 100 && y <= 134) {
                 talk19 = true;
-
+                backgroundMusic.pause();
+                Item.play();
                 talkTime = 10;
+                backgroundMusic.play();
                 return true;
             }
             else if (x >= 514 && x <= 572 && y >= 348 && y <= 396 && Flute == 0) {
                 talksnorlax = true;
-
+                
+            
                 talkTime = 10;
                 return true;
             }
             else if (x >= 514 && x <= 572 && y >= 348 && y <= 396 && Flute == 1) {
+                backgroundMusic.pause();
+                Flutesound.play();
                 
                 talksnorlaxwake = true;
 
                 talkTime = 10;
+                Flutesound.pause();
+                backgroundMusic.play();
                 return false;
             }
         }
@@ -1056,13 +1088,15 @@ function Characters(Game, canvas, context, image) {
         }
         else if (talksmash == true) {
 
-
+            backgroundMusic.pause();
+            smashSound.play();
             for (let i = 0; i < talk_script["smash"].length; i++) {
                 
                 context.fillStyle = "white";
                 context.fillText(talk_script["smash"][i], 30, 30 + i * 20)
                 
             }
+            
         }
         else if (talk17 == true) {
 
@@ -1097,16 +1131,16 @@ function Characters(Game, canvas, context, image) {
             smash = 1;
         }
         else if (talksnorlax == true) {
-
-
+            backgroundMusic.pause();
+            snorlaxSound.play();
             for (let i = 0; i < talk_script["snorlax"].length; i++) {
                 
                 context.fillStyle = "white";
                 context.fillText(talk_script["snorlax"][i], 30, 30 + i * 20)
                 
             }
-
-
+            
+            
         }
         else if (talksnorlaxwake == true) {
 

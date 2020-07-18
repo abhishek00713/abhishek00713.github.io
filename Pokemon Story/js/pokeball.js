@@ -34,7 +34,15 @@ function PokeBall(context, image) {
     this.updatePokeBall = function () {
 
         if (this.throwing == false) return;
-        if (this.x == this.maxX && this.y == this.maxY) player.pokemonObject.pokedraw = false;
+        if (this.x == this.maxX && this.y == this.maxY) 
+        {   Capture.play();
+            pokemonBattle.pause();
+            backgroundMusic.pause();
+            
+            player.pokemonObject.pokedraw = false;
+            
+        }
+        
         else {
             console.log(this.x, this.y);
             if (this.x <= this.maxX && this.y >= this.maxY) {
@@ -49,6 +57,7 @@ function PokeBall(context, image) {
             }
 
         }
+        backgroundMusic.play();
     }
     
 
