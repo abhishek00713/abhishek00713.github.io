@@ -2,7 +2,7 @@
 //
 // Asset loader
 //
-var world = 0;
+var world = 13;
 var that ;
 var Loader = {
     images: {}
@@ -14,34 +14,18 @@ var main_player;
 // Keyboard handler
 //
 
-// function fireKey(el)
-// {
-//     //Set key to corresponding code. This one is set to the left arrow key.
-//     var key = 37;
-//     if(document.createEventObject)
-//     {
-//         var eventObj = document.createEventObject();
-//         eventObj.keyCode = key;
-//         el.fireEvent("onkeydown", eventObj);   
-//     }else if(document.createEvent)
-//     {
-//         var eventObj = document.createEvent("Events");
-//         eventObj.initEvent("keydown", true, true);
-//         eventObj.which = key;
-//         el.dispatchEvent(eventObj);
-//     }
-// }
-// fireKey(document);
+
 var Keyboard = {};
 
-Keyboard.LEFT = 37;
-Keyboard.RIGHT = 39;
-Keyboard.UP = 38;
-Keyboard.DOWN = 40;
-Keyboard.ENTER = 13;
-Keyboard.ESC = 27;
-Keyboard.p = 80;
-Keyboard.r = 82;
+Keyboard.LEFT = KEY_LEFT;
+Keyboard.RIGHT = KEY_RIGHT;
+Keyboard.UP = KEY_UP;
+Keyboard.DOWN = KEY_DOWN;
+Keyboard.ENTER = KEY_ENTER;
+Keyboard.ESC = KEY_ESC;
+Keyboard.p = KEY_p;
+Keyboard.r = KEY_r;
+Keyboard.Space =KEY_Space;
 
 Keyboard._keys = {};
 
@@ -79,7 +63,7 @@ Keyboard._onKeyUp = function (event) {
     var keyCode = event.keyCode;
     player.characterDirection =-1;
     if (keyCode in this._keys) {
-        // event.preventDefault();
+        
         this._keys[keyCode] = false;
     }
 };
@@ -105,15 +89,14 @@ Game.run = function () {
     this._previousElapsed = 0;
 
     
-    
-    // window.requestAnimationFrame(this.tick);
+
     
 };
 
 
 Game.init = function () {
     Keyboard.listenForEvents(
-        [Keyboard.LEFT, Keyboard.RIGHT, Keyboard.UP, Keyboard.DOWN,Keyboard.ENTER,Keyboard.ESC,Keyboard.p,Keyboard.r]);
+        [Keyboard.LEFT, Keyboard.RIGHT, Keyboard.UP, Keyboard.DOWN,Keyboard.ENTER,Keyboard.Space,Keyboard.ESC,Keyboard.p,Keyboard.r]);
     this.tileAtlas =imageManager.getImage("tiles");
     
     
@@ -125,19 +108,7 @@ Game.init = function () {
 };
 
 Game.update = function (delta) {
-    // handle camera movement with arrow keys
-    // var dirx = 0;
-    // var diry = 0;
-    // if (Keyboard.isDown(Keyboard.LEFT)) { dirx = -1; }
-    // if (Keyboard.isDown(Keyboard.RIGHT)) { dirx = 1; }
-    // if (Keyboard.isDown(Keyboard.UP)) { diry = -1; }
-    // if (Keyboard.isDown(Keyboard.DOWN)) { diry = 1; }
-
-    // // console.log(camera)
-    // camera.move(delta, dirx, diry); 
-    // console.log(camera.move());
-
-    // player.setDelta(delta);
+    
 };
 Game.getSourceX = function(tile){
     return((tile > TILE_CAPACITY_IN_TILESHEET) ? (tile % TILE_CAPACITY_IN_TILESHEET - 1) * map.tsize : (tile - 1) * map.tsize);
@@ -150,8 +121,7 @@ Game.drawLayer = function (layer) {
     
     var sourceX ;
     var sourceY ;
- //   console.log('that',that);
-    // console.log(that.x);
+ 
    
 
     var startCol = Math.floor(player_camera.x / map.tsize);
@@ -160,9 +130,7 @@ Game.drawLayer = function (layer) {
     
     var startRow = Math.floor(player_camera.y / map.tsize);
     var endRow = startRow + (30*map.tsize / map.tsize);
-    // var offsetX = -camera.x + startCol * map.tsize;
     
-    // var offsetY = -camera.y + startRow * map.tsize;
     
     
     for (var c = startCol; c <= endCol; c++) {
@@ -170,7 +138,9 @@ Game.drawLayer = function (layer) {
         for (var r = startRow; r <= endRow; r++) {
             
             if(world ==0) {
+                
                 var tile = map.getTile(layer,c,r);
+    
             } else if (world==1){
                 
                 var tile = room_map.getRoomTile(layer,c,r);
@@ -207,18 +177,20 @@ Game.drawLayer = function (layer) {
             else if(world ==12){
                 var tile =0;
             }
+            else if(world ==13){
+                var tile =0;
+            }
             
 
             sourceX= this.getSourceX(tile);
             sourceY= this.getSourceY(tile);
 
     
-            // var x = (c - startCol) * map.tsize + offsetX;
-            // var y = (r - startRow) * map.tsize + offsetY;
+            
             var x = c;
             var y = r;
             
-            if (tile !== 0) { // 0 => empty tile
+            if (tile !== 0) { 
                  context.drawImage(
                     
                     this.tileAtlas, // image
@@ -227,13 +199,13 @@ Game.drawLayer = function (layer) {
                     sourceY, // source y
                     map.tsize, // source width
                     map.tsize, // source height
-                    Math.floor(x*31-player_camera.x),  // target x
-                    Math.floor(y*31-player_camera.y), // target y
+                    Math.floor(x*TILE_SIZE-player_camera.x),  // target x
+                    Math.floor(y*TILE_SIZE-player_camera.y), // target y
                     map.tsize, // target width
                     map.tsize // target height
 
                 );
-                // context.strokeRect(Math.round(x),Math.round(y),map.tsize,map.tsize);
+                
                 
             }
             
@@ -312,7 +284,15 @@ Game.render = function () {
     context.fillText(txt1, 470,610)
 
     }
+    else if(world ==13){
+        context.drawImage(backimg,0,0,canvas.width,canvas.height);
+        context.font = "29px Arial";
+    context.fillStyle = "yellow";
+    var txt="Press Enter for help";
+    context.fillText(txt, 20,40)
+    }
     
+    // draw map bot layer
     this.drawLayer(0);
     
     
@@ -326,10 +306,9 @@ Game.render = function () {
 };
 
 Game.tick = function (elapsed) {
-    // clear previous frame
-    // context.clearRect(0, 0, 620, 620);
-    // window.requestAnimationFrame(this.tick);this.tileAtlas =imageManager.getImage("tiles");
+    
     if(world ==0 ){
+        
         this.tileAtlas =imageManager.getImage("tiles");
     } else if (world==1) {
         this.tileAtlas =imageManager.getImage("room");
@@ -356,7 +335,7 @@ Game.tick = function (elapsed) {
         this.tileAtlas =imageManager.getImage("room");
     }
 
-    // compute delta time in seconds -- also cap it
+    
     var delta = (elapsed - this._previousElapsed) / 1000.0;
     delta = Math.min(delta, 0.25); // maximum delta of 250 ms
     this._previousElapsed = elapsed;
@@ -390,13 +369,26 @@ var player;
 var camera;
 var Side1,Side3;
 var pokeballs;
+var Backgroundsound;
+var intro;
+var backimg;
 
-// console.log(camera)
 
 function onDone(){
+    
+    //start screen img
+    backimg=imageManager.getImage("backimg")
+    
+    //player_obj
     player = new Characters(Game,canvas, context, imageManager.getImage("characters"));
+
+    //camera
     camera = new Camera(map, 620, 620);    
+
+    //pokeballs
     pokeballs = new PokeBall(context, imageManager.getImage("PokemonBall"));
+
+    //side_characters
     Side1 = new SideCharacter(context,imageManager.getImage("sideOne"));
     Side1.setXY(150,300);
     Side2 = new SideCharacter(context,imageManager.getImage("sideTwo"));
@@ -465,7 +457,7 @@ function onDone(){
     Pokemon5 = new Pokemon(context,imageManager.getImage("Pokemon5"));
     Pokemon5.setXY(550,286);
     Pokemon6 = new Pokemon(context,imageManager.getImage("Pokemon6"));
-    Pokemon6.setXY(550,286);
+    Pokemon6.setXY(550,260);
     Pokemon7 = new Pokemon(context,imageManager.getImage("Pokemon7"));
     Pokemon7.setXY(550,286);
     Pokemon8 = new Pokemon(context,imageManager.getImage("Pokemon8"));
@@ -480,9 +472,6 @@ function onDone(){
     
 
     
-    
-    // alert("Loading successful");
-    // console.log(imageManager.getImage("tiles"));
     Game.run(); 
     player.init();
     
@@ -490,11 +479,15 @@ function onDone(){
 
 var imageManager = new ImageManager();
 imageManager.load({
+
+    //tileset
     "tiles":"./tilesheet/tile_3.png"
     ,"characters":"./Sprites/main_boy_run.png"
     ,"BigCharacter":"./Sprites/main_boy_battle.png"
     ,"room":"./tilesheet/room_tileset.png"
     ,"mart":"./tilesheet/Mart interior.png"
+
+    //side_characters_images
     ,"sideOne":"./Sprites/side_char_1.png"
     ,"sideTwo":"./Sprites/side_char_2.png"
     ,"sideThree":"./Sprites/side_char_3.png"
@@ -522,7 +515,7 @@ imageManager.load({
 ,"sideTwentyfour" : "./Sprites/side_char_24.png"
 
 
-
+//pokemon_images
 ,"Pokemon1" : "./Sprites/pokemon_1.png"
 ,"Pokemon2" : "./Sprites/pokemon_2.png"
 ,"Pokemon3" : "./Sprites/pokemon_3.png"
@@ -536,5 +529,9 @@ imageManager.load({
 ,"PokemonBall" : "./Sprites/pokebal.png"
 ,"PokemonStand" : "./Sprites/pokemon_stand.png"
 ,"PlayerStand" : "./Sprites/player_stand.png"
+
+
+,"backimg" : "./Sprites/backimg.jpg"
 }, onDone);
 var player_camera = {x:0,y:0,maxX:300,maxY:300};
+

@@ -1,27 +1,33 @@
 function Characters(Game, canvas, context, image) {
-
-    this.player_x = 200;//130 for collisiom
-    this.player_y = 390;//70
-    this.counter = 0;
-
-    // var old_x =this.player_x;
-    // var old_y = this.player_y ;
-    var grasswalkduration = 100;
-    var pokemon_name;
+    //player_info
+    this.player_x = 200;
+    this.player_y = 390;
     this.width = 30;
     this.height = 50;
     this.height_scale = 1.5;
     this.width_scale = 1.5;
-    this.pokemonObject;
+    this.img = image;
+    var self = this;
+
+    //Speed
     dx = 2;
     dy = 2;
-    var self = this;
-    var random;
     var temporary_x;
     var temporary_y;
+    this.counter = 0;
+    
+
+    
+    var grasswalkduration = 100;
+    var pokemon_name;
+    this.pokemonObject;
+    
+    
+    var random;
+    
     this.characterDirection = -1; // 0 = left, 1 = right, 2= top, 3 = bottom
-    ;
-    this.img = image;
+    
+    
     var world0walkableTiles = [-1, 4, 12, 970];
     var world1walkableTiles = [-1, 970];
     this.currentWorld;
@@ -85,16 +91,10 @@ function Characters(Game, canvas, context, image) {
     this.drawFrame = function (animationArray) {
         const scaledWidth = this.width_scale * this.width;
         const scaledHeight = this.height_scale * this.height
-        // context.clearRect(this.player_x, this.player_y, this.width,this.height);    
+        
         context.strokeRect(
-            this.player_x * 31, this.player_y * 31, scaledWidth, scaledHeight);
-        // console.log('cy',canvasY);
-        // console.log('fx',frameX);
-        // console.log('draw');
-        // context.clearRect(canvasX,canvasY,this.width,this.height);
-
-        // this.playerCameraMove(camera_delta);
-        // console.log(characterIndex);
+            this.player_x * TILE_SIZE, this.player_y * TILE_SIZE, scaledWidth, scaledHeight);
+        
 
         if (Number.isNaN(this.characterIndex)) return;
         this.characterIndex += 5 * parseFloat(1 / 60);
@@ -102,8 +102,7 @@ function Characters(Game, canvas, context, image) {
         var indexX = Math.floor(this.characterIndex) % animationArray.length;
         var indexY = this.characterDirection;
 
-        // indexX = 0;
-        // indexY = 0;
+        
         if (this.characterDirection == -1) {
             indexX = 0;
             indexY = 0;
@@ -137,8 +136,8 @@ function Characters(Game, canvas, context, image) {
         this.img = imageManager.getImage("BigCharacter");
         this.height = 128;
         this.width = 128;
-        this.player_x = 350;//130 for collisiom
-        this.player_y = 580;//70
+        this.player_x = 350;
+        this.player_y = 580;
         player_camera.x = 300;
         player_camera.y = 300;
         this.height_scale = 2;
@@ -162,11 +161,9 @@ function Characters(Game, canvas, context, image) {
     }
 
     this.movePlayer = function (keyword) {
-        console.log(keyword);
+        
 
-        // console.log('move ko');
-        // console.log('old x',old_x);
-        // console.log('old y',old_y);
+        
         if (talkTime === 0) {
             talk1 = false;
             talk2 = false;
@@ -204,25 +201,28 @@ function Characters(Game, canvas, context, image) {
         } else {
             talkTime--;
         }
+        if(keyword ==32){
+            world=0;
+        }
 
-        if (keyword === 13) {
+        else if (keyword === 13) {
             if (world != 12) {
                 this.currentWorld = world;
             }
 
 
-            console.log('enter');
-            console.log(this.currentWorld);
+            
+            
             world = 12;
-            console.log(world);
+            
 
 
 
 
         }
         else if (keyword == 80) {
-            console.log('pokemonBALL');
-            pokeballs.setXY(350, 580);
+            
+            pokeballs.setXY(400, 580);
             pokeballs.throwPokeBall();
 
 
@@ -244,8 +244,8 @@ function Characters(Game, canvas, context, image) {
             this.player_x -= dx;
             this.walk = this.checkCollision(this.player_x, this.player_y);
             if (this.walk == true) {
-                if (this.player_x > player_camera.x + 2 * 31) {
-                    player_camera.x = this.player_x - 7 * 31;
+                if (this.player_x > player_camera.x + 2 * TILE_SIZE) {
+                    player_camera.x = this.player_x - 7 * TILE_SIZE;
                     player_camera.x = Math.max(0, Math.min(player_camera.x, player_camera.maxX));
                     player_camera.y = Math.max(0, Math.min(player_camera.y, player_camera.maxY));
                 }
@@ -277,22 +277,22 @@ function Characters(Game, canvas, context, image) {
             spriteX = 0;
             spriteY = 2;
 
-            this.player_x = Math.min(this.player_x + dx, 30 * 31);
-            // console.log('right',this.player_x);
+            this.player_x = Math.min(this.player_x + dx, (TILE_SIZE-1) * TILE_SIZE);
+            
             this.walk = this.checkCollision(this.player_x, this.player_y);
 
             this.walk = this.checkCollision(this.player_x, this.player_y);
             if (this.walk == true) {
 
-                if (this.player_x > player_camera.x + 7 * 31) {
-                    player_camera.x = this.player_x - 7 * 31;
+                if (this.player_x > player_camera.x + 7 * TILE_SIZE) {
+                    player_camera.x = this.player_x - 7 * TILE_SIZE;
                     player_camera.x = Math.max(0, Math.min(player_camera.x, player_camera.maxX));
                     player_camera.y = Math.max(0, Math.min(player_camera.y, player_camera.maxY));
                 }
                 this.characterDirection = 2;
             }
             else {
-                this.player_x = Math.min(this.player_x - dx, 30 * 31);
+                this.player_x = Math.min(this.player_x - dx, (TILE_SIZE-1) * TILE_SIZE);
                 this.characterDirection = -1;
             }
 
@@ -321,8 +321,8 @@ function Characters(Game, canvas, context, image) {
 
             this.walk = this.checkCollision(this.player_x, this.player_y);
             if (this.walk == true) {
-                if (this.player_y > player_camera.y + 2 * 31) {
-                    player_camera.y = this.player_y - 7 * 31;
+                if (this.player_y > player_camera.y + 2 * TILE_SIZE) {
+                    player_camera.y = this.player_y - 7 * TILE_SIZE;
                     player_camera.x = Math.max(0, Math.min(player_camera.x, player_camera.maxX));
                     player_camera.y = Math.max(0, Math.min(player_camera.y, player_camera.maxY));
                 }
@@ -334,14 +334,7 @@ function Characters(Game, canvas, context, image) {
                 this.characterDirection = -1;
             }
 
-            // if(this.walk==false){
-            //     // this.player_y+=dy;
-            //     this.drawFrame(spriteX,spriteY);
-            // }
-            // else{
-
-            //     this.drawFrame(spriteX,spriteY);
-            // }
+            
 
 
         }
@@ -351,12 +344,12 @@ function Characters(Game, canvas, context, image) {
             spriteX = 0;
             spriteY = 0;
 
-            this.player_y = Math.min(this.player_y + dy, 30 * 31);
+            this.player_y = Math.min(this.player_y + dy, (TILE_SIZE-1) * TILE_SIZE);
 
             this.walk = this.checkCollision(this.player_x, this.player_y);
             if (this.walk == true) {
-                if (this.player_y > player_camera.y + 7 * 31) {
-                    player_camera.y = this.player_y - 7 * 31;
+                if (this.player_y > player_camera.y + 7 * TILE_SIZE) {
+                    player_camera.y = this.player_y - 7 * TILE_SIZE;
                     player_camera.x = Math.max(0, Math.min(player_camera.x, player_camera.maxX));
                     player_camera.y = Math.max(0, Math.min(player_camera.y, player_camera.maxY));
                     this.characterDirection = 0;
@@ -372,28 +365,14 @@ function Characters(Game, canvas, context, image) {
                 this.RoomCollision();
                 this.player_y -= dy;
                 this.characterDirection = -1;
-                // this.topDoorCheck();
+                
             }
 
 
 
-
-
-            // if(this.walk==false){
-            //     // this.player_y-=dy;
-            //     this.drawFrame(spriteX,spriteY);
-            // }
-            // else{
-            //     this.drawFrame(spriteX,spriteY);
-            // }
-
-
         }
 
-        // else{
-        //     console.log('else');
-        //     this.characterDirection=-1;
-        // }
+        
 
 
     }
@@ -401,13 +380,10 @@ function Characters(Game, canvas, context, image) {
     this.checkCollision = function (x, y) {
         column = 0;
         row = 0;
-        // console.log('x', x);
-        // console.log('y', y);
-        column = Math.floor((x + 30 / 2) / 31);
-        row = Math.floor((y + 50 / 2) / 31);
-        // console.log('col', column);
-        // console.log('row', row);
-        // this.changeToNormal();
+        
+        column = Math.floor((x + this.width / 2) / TILE_SIZE);
+        row = Math.floor((y + this.height / 2) / TILE_SIZE);
+        
         if (world == 0) {
             // tile = map.getTile(1, column, row);
             tile = map.getTile(1, column, row);
@@ -416,13 +392,13 @@ function Characters(Game, canvas, context, image) {
                 grasswalkduration--;
                 if (grasswalkduration == 0) {
                     this.currentWorld = world;
-                    random = Math.floor((Math.random() * 10) + 1);
+                    random = Math.floor((Math.random() * 5) + 1);
                     temporary_x = x;
                     temporary_y = y;
 
                     this.changeToBigBoy();
                     world = 11;
-                    grasswalkduration = Math.floor(Math.random() * 1000+200);
+                    grasswalkduration = Math.floor(Math.random() * 700+200);
                     return true;
                 }
 
@@ -436,10 +412,10 @@ function Characters(Game, canvas, context, image) {
 
                     return true;
                 }
-                else if (tile == 855.9) {
-                    console.log('0 ko tile', tile, x, y);
+                else if (tile == TREE_TILE) {
+                    
                     if (Cut == 1) {
-                        console.log('tm yes');
+                    
                         sideChar = this.sideCharCollision(x, y);
 
                         map.removeTile(1, column, row);
@@ -447,7 +423,7 @@ function Characters(Game, canvas, context, image) {
                         return true;
                     }
                     else {
-                        console.log('cut no', Cut);
+                    
                         sideChar = this.sideCharCollision(x, y);
                     }
 
@@ -456,32 +432,29 @@ function Characters(Game, canvas, context, image) {
             }
         }
         else if (world == 1) {
-            //hareko room ko laagi harek collision
+            
             tile = room_map.getRoomTile(1, column, row);
             for (var i = 0; i < world1walkableTiles.length; i++) {
                 if (tile == world1walkableTiles[i]) {
 
                     sideChar = this.sideCharCollision(x, y);
                     if (sideChar == false) {
-                        console.log('false side char', sideChar);
+                        
                         return true;
                     }
-                    // else{
-                    //     talk1=false;
-                    //     talk3=false;
-                    // }
+                    
 
 
                 }
             }
         } else if (world == 2) {
-            //hareko room ko laagi harek collision
+            
             tile = mart.getMartTile(1, column, row);
             for (var i = 0; i < world1walkableTiles.length; i++) {
                 if (tile == world1walkableTiles[i]) {
                     sideChar = this.sideCharCollision(x, y);
                     if (sideChar == false) {
-                        console.log('false side char', sideChar);
+                        
                         return true;
                     }
 
@@ -490,13 +463,13 @@ function Characters(Game, canvas, context, image) {
             }
         }
         else if (world == 3) {
-            //hareko room ko laagi harek collision
+            
             tile = second_room.getSecondRoomTile(1, column, row);
             for (var i = 0; i < world1walkableTiles.length; i++) {
                 if (tile == world1walkableTiles[i]) {
                     sideChar = this.sideCharCollision(x, y);
                     if (sideChar == false) {
-                        console.log('false side char', sideChar);
+            
                         return true;
                     }
 
@@ -509,7 +482,7 @@ function Characters(Game, canvas, context, image) {
                 if (tile == world1walkableTiles[i]) {
                     sideChar = this.sideCharCollision(x, y);
                     if (sideChar == false) {
-                        console.log('false side char', sideChar);
+            
                         return true;
                     }
 
@@ -522,7 +495,7 @@ function Characters(Game, canvas, context, image) {
                 if (tile == world1walkableTiles[i]) {
                     sideChar = this.sideCharCollision(x, y);
                     if (sideChar == false) {
-                        console.log('false side char', sideChar);
+            
                         return true;
                     }
 
@@ -551,16 +524,16 @@ function Characters(Game, canvas, context, image) {
                 if (tile == world1walkableTiles[i]) {
                     sideChar = this.sideCharCollision(x, y);
                     if (sideChar == false) {
-                        console.log('false side char', sideChar);
+                        
                         return true;
                     }
 
 
                 }
                 else if (tile == 1005) {
-                    console.log('0 ko tile', tile, x, y);
+                    
                     if (smash == 1) {
-                        console.log('smash yes');
+                    
                         sideChar = this.sideCharCollision(x, y);
 
                         route.removeRouteTile(1, column, row);
@@ -568,27 +541,22 @@ function Characters(Game, canvas, context, image) {
                         return true;
                     }
                     else {
-                        console.log('smash no', Cut);
+                    
                         sideChar = this.sideCharCollision(x, y);
                     }
 
                 }
-                // else if(tile ==73 || tile == 74 || tile==75 && shoes ==0){
-
-                // }
-                // else if(tile ==73 || tile == 74 || tile==75 && shoes ==1){
-
-                // }
+                
             }
         }
         else if (world == 7) {
             tile = city_one.getCityOneTile(1, column, row);
-            console.log('tile', tile);
+            
             for (var i = 0; i < world1walkableTiles.length; i++) {
                 if (tile == world1walkableTiles[i]) {
                     sideChar = this.sideCharCollision(x, y);
                     if (sideChar == false) {
-                        console.log('false side char', sideChar);
+            
                         return true;
                     }
 
@@ -598,12 +566,12 @@ function Characters(Game, canvas, context, image) {
         }
         else if (world == 8) {
             tile = city_room_one.getCityRoomOneTile(1, column, row);
-            console.log('tile', tile);
+            
             for (var i = 0; i < world1walkableTiles.length; i++) {
                 if (tile == world1walkableTiles[i]) {
                     sideChar = this.sideCharCollision(x, y);
                     if (sideChar == false) {
-                        console.log('false side char', sideChar);
+            
                         return true;
                     }
 
@@ -613,12 +581,12 @@ function Characters(Game, canvas, context, image) {
         }
         else if (world == 9) {
             tile = city_room_two.getCityTwoTile(1, column, row);
-            console.log('tile', tile);
+            
             for (var i = 0; i < world1walkableTiles.length; i++) {
                 if (tile == world1walkableTiles[i]) {
                     sideChar = this.sideCharCollision(x, y);
                     if (sideChar == false) {
-                        console.log('false side char', sideChar);
+            
                         return true;
                     }
 
@@ -628,12 +596,12 @@ function Characters(Game, canvas, context, image) {
         }
         else if (world == 10) {
             tile = city_room_three.getCityThreeTile(1, column, row);
-            console.log('tile', tile);
+            
             for (var i = 0; i < world1walkableTiles.length; i++) {
                 if (tile == world1walkableTiles[i]) {
                     sideChar = this.sideCharCollision(x, y);
                     if (sideChar == false) {
-                        console.log('false side char', sideChar);
+            
                         return true;
                     }
 
@@ -641,30 +609,24 @@ function Characters(Game, canvas, context, image) {
                 }
             }
         }
-        // else{
-        //     talk1=false;
-        //     talk3=false;
-        // }
-
-
-        // console.log('collision');
+        
 
         return false;
     }
 
     this.sideCharCollision = function (x, y) {
-        console.log(x, y);
-        console.log('cut bahira', Cut);
+        
+        
         if (world == 0) {
-            console.log('cut', Cut);
+        
             if (x >= 540 && x <= 566 && y >= 98 && Cut == 0) {
-                console.log('cut 0 bhayo ');
+        
                 talkuncut = true;
                 talkTime = 10;
                 return true;
             }
             else if (x >= 540 && x <= 566 && y >= 98 && Cut == 1) {
-                console.log('cut 1 bhayo true');
+        
                 talkcut = true;
                 talkTime = 10;
                 return true;
@@ -687,7 +649,7 @@ function Characters(Game, canvas, context, image) {
             }
             //3rd
             else if (x >= 562 && x <= 640 && y >= 550 && y <= 618) {
-                console.log('talk 3', talk3, talkTime);
+                
                 talk3 = true;
 
                 talkTime = 10;
@@ -898,7 +860,7 @@ function Characters(Game, canvas, context, image) {
         if (talkcut == true) {
             for (let i = 0; i < talk_script["cut"].length; i++) {
 
-                console.log(talk_script["cut"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["cut"][i], 30, 30 + i * 20)
 
@@ -907,7 +869,7 @@ function Characters(Game, canvas, context, image) {
         else if (talkuncut == true) {
             for (let i = 0; i < talk_script["uncut"].length; i++) {
 
-                console.log(talk_script["uncut"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["uncut"][i], 30, 30 + i * 20)
 
@@ -916,7 +878,7 @@ function Characters(Game, canvas, context, image) {
         else if (talk1 == true) {
             for (let i = 0; i < talk_script["1"].length; i++) {
 
-                console.log(talk_script["1"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["1"][i], 30, 30 + i * 20)
 
@@ -926,7 +888,7 @@ function Characters(Game, canvas, context, image) {
         else if (talk2 == true) {
             for (let i = 0; i < talk_script["2"].length; i++) {
 
-                console.log(talk_script["2"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["2"][i], 30, 30 + i * 20)
 
@@ -937,88 +899,84 @@ function Characters(Game, canvas, context, image) {
 
 
             for (let i = 0; i < talk_script["3"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["3"][i]);
+                
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["3"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
         }
         else if (talk4 == true) {
 
 
             for (let i = 0; i < talk_script["4"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["4"][i]);
+                
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["4"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
         }
         else if (talk5 == true) {
 
 
             for (let i = 0; i < talk_script["5"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["5"][i]);
+                
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["5"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
         }
         else if (talk6 == true) {
 
 
             for (let i = 0; i < talk_script["6"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["6"][i]);
+                
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["6"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
         }
         else if (talk7 == true) {
 
 
             for (let i = 0; i < talk_script["7"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["7"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["7"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
         }
         else if (talk8 == true) {
 
 
             for (let i = 0; i < talk_script["8"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["8"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["8"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
         }
         else if (talk9 == true) {
 
 
             for (let i = 0; i < talk_script["9"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["9"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["9"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
         }
         else if (talk10 == true) {
 
 
             for (let i = 0; i < talk_script["10"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["10"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["10"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
             this.balls = 10;
         }
@@ -1026,33 +984,30 @@ function Characters(Game, canvas, context, image) {
 
 
             for (let i = 0; i < talk_script["11"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["11"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["11"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
         }
         else if (talk12 == true) {
 
 
             for (let i = 0; i < talk_script["12"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["12"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["12"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
         }
         else if (talk13 == true) {
 
 
             for (let i = 0; i < talk_script["13"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["13"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["13"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
             Cut = 1;
         }
@@ -1060,33 +1015,30 @@ function Characters(Game, canvas, context, image) {
 
 
             for (let i = 0; i < talk_script["14"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["14"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["14"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
         }
         else if (talk15 == true) {
 
 
             for (let i = 0; i < talk_script["15"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["15"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["15"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
         }
         else if (talk16 == true) {
 
 
             for (let i = 0; i < talk_script["16"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["16"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["16"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
             shoes = 1;
             world1walkableTiles.push(73, 74, 75);
@@ -1095,33 +1047,31 @@ function Characters(Game, canvas, context, image) {
 
 
             for (let i = 0; i < talk_script["unsmash"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["unsmash"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["unsmash"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
+                
             }
         }
         else if (talksmash == true) {
 
 
             for (let i = 0; i < talk_script["smash"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["smash"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["smash"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
         }
         else if (talk17 == true) {
 
 
             for (let i = 0; i < talk_script["17"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["17"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["17"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
             Flute = 1;
         }
@@ -1129,22 +1079,20 @@ function Characters(Game, canvas, context, image) {
 
 
             for (let i = 0; i < talk_script["18"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["18"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["18"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
         }
         else if (talk19 == true) {
 
 
             for (let i = 0; i < talk_script["19"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["19"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["19"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
             smash = 1;
         }
@@ -1152,11 +1100,10 @@ function Characters(Game, canvas, context, image) {
 
 
             for (let i = 0; i < talk_script["snorlax"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["snorlax"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["snorlax"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
 
 
@@ -1165,11 +1112,11 @@ function Characters(Game, canvas, context, image) {
 
             snorlax.snorlaxwake=true;
             for (let i = 0; i < talk_script["snorlaxwake"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["snorlaxwake"][i]);
+                
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["snorlaxwake"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
 
 
@@ -1178,11 +1125,10 @@ function Characters(Game, canvas, context, image) {
 
 
             for (let i = 0; i < talk_script["walk"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["walk"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["walk"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
 
 
@@ -1191,33 +1137,30 @@ function Characters(Game, canvas, context, image) {
 
 
             for (let i = 0; i < talk_script["20"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["20"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["20"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
         }
         else if (talk21 == true) {
 
 
             for (let i = 0; i < talk_script["21"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["21"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["21"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
         }
         else if (talk22 == true) {
 
 
             for (let i = 0; i < talk_script["22"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["22"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["22"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
 
         }
@@ -1226,11 +1169,10 @@ function Characters(Game, canvas, context, image) {
 
 
             for (let i = 0; i < talk_script["23"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["23"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["23"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
 
         }
@@ -1238,11 +1180,10 @@ function Characters(Game, canvas, context, image) {
 
 
             for (let i = 0; i < talk_script["24"].length; i++) {
-                // setTimeout(function(){
-                console.log(talk_script["24"][i]);
+                
                 context.fillStyle = "white";
                 context.fillText(talk_script["24"][i], 30, 30 + i * 20)
-                // }, 1000*i);
+                
             }
 
         }
@@ -1290,7 +1231,7 @@ function Characters(Game, canvas, context, image) {
                 else if (tile == 4244 || tile == 4245) {
 
                     if (this.player_x >= 200 && this.player_x <= 300 && this.player_y == 748) {
-                        console.log('4th hoouse', this.player_x);
+                        
                         this.player_x = 400;
                         this.player_y = 810;
                         world = 5;
@@ -1328,7 +1269,7 @@ function Characters(Game, canvas, context, image) {
                 world =2;
             }else if(tile == 4244 ){
                 if(this.player_x >=200 && this.player_x<=300 && this.player_y==748) {
-                    console.log('first if');
+                    
                     this.player_x=510;
                 this.player_y=810;
                 world =3;
@@ -1343,12 +1284,12 @@ function Characters(Game, canvas, context, image) {
                 
             }
         }
-    }
+        }
     }
     this.RoomCollision = function () {
 
 
-        console.log(tile);
+        
         for (var i = 0; i < outDoorTiles.length; i++) {
             if (tile == 3314 || tile == 3315 || tile == 3322 || tile == 3323) {
 
@@ -1382,21 +1323,20 @@ function Characters(Game, canvas, context, image) {
                 world = 0;
             }
             else if (tile == 3316 || tile == 3317 || tile == 3318) {
-                console.log('1 room ko tile', tile);
+                
                 this.player_x -= 40;
                 this.player_y -= 15;
                 world = 7;
             }
             else if (tile == 3241 || tile == 3242 || tile == 3243) {
-                console.log('2 room ko tile', tile);
+                
                 this.player_x += 80;
                 this.player_y -= 30;
-                // this.player_x-=240;
-                // this.player_y-=120;
+                
                 world = 7;
             }
             else if (tile == 3217 || tile == 3218 || tile == 3219) {
-                console.log('3 room ko tile', tile);
+                
                 this.player_x -= 40;
                 this.player_y -= 120;
                 world = 7;
@@ -1420,29 +1360,16 @@ function Characters(Game, canvas, context, image) {
             if (Keyboard.isDown(Keyboard.UP)) { diry = -1; }
             if (Keyboard.isDown(Keyboard.DOWN)) { diry = 1; }
 
-            // console.log(camera)
+            
             this.walk = false;
-            // camera.move(delta, dirx, diry); 
+            
         }
     }
 
     this.init = function () {
         this.counter++;
-        // if(this.walk == false){
-        //     // console.log('1');
-        //     this.drawFrame(spriteX,spriteY);
+        
 
-
-        // }
-        // else{
-        //     console.log('2');
-        // old_x = new_x;
-        // old_y = new_y;
-
-        // }
-        //bottom, left, right, top
-
-        // context.clearRect(0,0,canvas.width,canvas.height);
         Game.tick(0);
         if (world == 1) {
 
@@ -1455,33 +1382,31 @@ function Characters(Game, canvas, context, image) {
 
 
         } else if (world == 2) {
-            //hareko room ko laagi harek collision
+
             Side4.drawSideCharacter();
             Side5.drawSideCharacter();
             Side6.drawSideCharacter();
         }
         else if (world == 3) {
-            //hareko room ko laagi harek collision
+
             Side7.drawSideCharacter();
             Side8.drawSideCharacter();
             Side9.drawSideCharacter();
         }
         else if (world == 4) {
-            //hareko room ko laagi harek collision
+
             Side10.drawSideCharacter();
             Side11.drawSideCharacter();
             Side12.drawSideCharacter();
         }
         else if (world == 5) {
-            //hareko room ko laagi harek collision
+
             Side13.drawSideCharacter();
             Side14.drawSideCharacter();
             Side15.drawSideCharacter();
         }
         else if (world == 6) {
 
-            // Side13.drawSideCharacter();
-            // Side14.drawSideCharacter();
             Side16.drawSideCharacter();
             Side17.drawSideCharacter();
             Side18.drawSideCharacter();
@@ -1532,31 +1457,9 @@ function Characters(Game, canvas, context, image) {
                 pokemon_name = "METAPOD";
                 Pokemon5.drawPokemonCharacter();
             }
-            else if (random == 6) {
-                this.pokemonObject = Pokemon5;
-                pokemon_name = "WEEDLE";
-                Pokemon6.drawPokemonCharacter();
-            }
-            else if (random == 7) {
-                this.pokemonObject = Pokemon5;
-                pokemon_name = "PIDGEY";
-                Pokemon7.drawPokemonCharacter();
-            }
-            else if (random == 8) {
-                this.pokemonObject = Pokemon5;
-                pokemon_name = "SPEAROW";
-                Pokemon8.drawPokemonCharacter();
-            }
-            else if (random == 9) {
-                this.pokemonObject = Pokemon5;
-                pokemon_name = "PIKACHU";
-                Pokemon9.drawPokemonCharacter();
-            }
-            else if (random == 10) {
-                this.pokemonObject = Pokemon5;
-                pokemon_name = "MANKEY";
-                Pokemon10.drawPokemonCharacter();
-            }
+            
+            
+            
 
 
 
@@ -1581,10 +1484,10 @@ function Characters(Game, canvas, context, image) {
 
         }
         else if(world ==5){
-            //hareko room ko laagi harek collision
+
             Side1.drawSideCharacter();
             Side4.drawSideCharacter();
-            // Side5.drawSideCharacter();
+
         }
         this.drawFrame([0, 1, 2, 3]);
         if (world == 12) {
@@ -1597,25 +1500,83 @@ function Characters(Game, canvas, context, image) {
 
             context.fillStyle = "green";
 
-            context.fillRect(10, 20, 350, 580);
+            context.fillRect(10, 20, 350, 370);
 
             context.stroke();
 
             context.font = "40px Arial";
             context.fillStyle = "white";
             var txt = "OBJECTIVE";
-            context.fillText(txt, 30, 70)
+            context.fillText(txt, 50, 70)
 
             context.font = "20px Arial";
             context.fillStyle = "white";
             var txt = "Ask the old man for TMCUT.";
-            context.fillText(txt, 30, 150);
+            context.fillText(txt, 30, 120);
             var txt = "Ask the proffessor for POKEBALLS.";
-            context.fillText(txt, 30, 200);
+            context.fillText(txt, 30, 170);
             var txt = "Get TMSMASH from the woods.";
-            context.fillText(txt, 30, 250);
-            var txt = "Get the boots to get across the water.";
-            context.fillText(txt, 30, 300);
+            context.fillText(txt, 30, 220);
+            var txt = "Get the boots to cross the water.";
+            context.fillText(txt, 30, 270);
+            var txt = "Get the flute to wake snorlax.";
+            context.fillText(txt, 30, 320);
+            var txt = "Bring  the old man's cherry";
+            context.fillText(txt, 30, 370);
+
+
+            context.beginPath();
+
+            context.lineWidth = "5";
+
+            context.fillStyle = "purple";
+
+            context.fillRect(370, 20, 230, 370);
+
+            context.stroke();
+
+            context.font = "40px Arial";
+            context.fillStyle = "white";
+            var txt = "ITEMS";
+            context.fillText(txt, 430, 70)
+
+            context.font = "20px Arial";
+            context.fillStyle = "white";
+            var txt = "TMCUT                "+Cut;
+            context.fillText(txt, 400, 120);
+            var txt = "POKEBALLS       "+this.balls;
+            context.fillText(txt, 400, 170);
+            var txt = "TMSMASH          "+smash;
+            context.fillText(txt, 400, 220);
+            var txt = "BOOTS               "+shoes;
+            context.fillText(txt, 400, 270);
+            var txt = "FLUTE                "+Flute;
+            context.fillText(txt, 400, 320);
+            var txt = "CHERRY            0 ";
+            context.fillText(txt, 400, 370);
+
+            context.beginPath();
+
+            context.lineWidth = "5";
+
+            context.fillStyle = "red";
+
+            context.fillRect(10, 400, 590, 200);
+
+            context.stroke();
+            
+            context.font = "40px Arial";
+            context.fillStyle = "yellow";
+            var txt = "!!!HINT!!!";
+            context.fillText(txt, 230, 450);
+            context.font = "20px Arial";
+            context.fillStyle = "yellow";
+            var txt ="USE THE ARROW KEYS TO MOVE THE PLAYER";
+            context.fillText(txt, 80, 490);
+            var txt ="USE ITEMS TO COMPLETE THE OBJECTIVE";
+            context.fillText(txt, 80, 530);
+            var txt ="PRESS ESC KEY TO CLOSE THIS HELP";
+            context.fillText(txt, 80, 570);
 
 
         }
@@ -1623,12 +1584,7 @@ function Characters(Game, canvas, context, image) {
         pokeballs.updatePokeBall();
 
         pokeballs.drawPokeBall();
-        // console.log(animation_delta);
-        // this.movePlayer(0);
-
-        // this.drawFrame(1, 0, scaledWidth, 0);
-        // drawFrame(0, 3, scaledWidth * 2, 0);
-        // drawFrame(0, 0, scaledWidth * 3, 0);
+        
 
         requestAnimationFrame(this.init.bind(this));
 

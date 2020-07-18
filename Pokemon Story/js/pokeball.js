@@ -1,7 +1,7 @@
 function PokeBall(context, image) {
 
-    this.maxX = 550;
-    this.maxY = 286;
+    this.maxX = 580;
+    this.maxY = 296;
     this.width = 100;
     this.height = 100;
     const height_scale = 1.5;
@@ -32,7 +32,7 @@ function PokeBall(context, image) {
         }
     }
     this.updatePokeBall = function () {
-        // if(player.counter%2!=0)return
+
         if (this.throwing == false) return;
         if (this.x == this.maxX && this.y == this.maxY) player.pokemonObject.pokedraw = false;
         else {
@@ -50,9 +50,7 @@ function PokeBall(context, image) {
 
         }
     }
-    this.removeSideCharacter = function () {
-        this.context.clearRect(550, 350, 30, 50);
-    }
+    
 
 
 }

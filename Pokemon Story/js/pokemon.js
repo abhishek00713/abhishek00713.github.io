@@ -25,20 +25,14 @@ function Pokemon(context,image){
                 world=player.currentWorld;
             player.changeToNormal();
             pokeballs.throwing =false;
-            // setTimeout(function(){
-            //     console.log('firebase',fireKey);
-            //     fireKey(window);
-                
-            // },100)
+           
             
             },1000);
             
         }
-        
+        this.pokedraw=true;
     }
-    this.removeSideCharacter = function(){
-        this.context.clearRect(550,350,30,50);
-    }
+    
     
     
 }
