@@ -485,7 +485,7 @@ imageManager.load({
     ,"characters":"Sprites/main_boy_run.png"
     ,"BigCharacter":"Sprites/main_boy_battle.png"
     ,"room":"tilesheet/room_tileset.png"
-    ,"mart":"tilesheet/Mart interior.png"
+    ,"mart":"tilesheet/Mart interior.PNG"
 
     //side_characters_images
     ,"sideOne":"Sprites/side_char_1.png"
@@ -527,7 +527,7 @@ imageManager.load({
 ,"Pokemon9" : "Sprites/pokemon_9.png"
 ,"Pokemon10" : "Sprites/pokemon_10.png"
 ,"PokemonBall" : "Sprites/pokebal.png"
-,"PokemonStand" : "Sprites/pokemon_stand.png"
+,"PokemonStand" : "Sprites/grass.png"
 ,"PlayerStand" : "Sprites/player_stand.png"
 
 
