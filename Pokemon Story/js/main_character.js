@@ -1,24 +1,24 @@
 function Characters(Game, canvas, context, image) {
     //player_info
-    this.player_x = 200;
-    this.player_y = 390;
-    this.width = 30;
-    this.height = 50;
-    this.height_scale = 1.5;
-    this.width_scale = 1.5;
+    this.player_x = MAINPLAYERX;
+    this.player_y = MAINPLAYERY;
+    this.width = MAINPLAYERWIDTH;
+    this.height = MAINPLAYERHEIGHT;
+    this.height_scale = SCALEHEIGHT;
+    this.width_scale = SCALEWIDTH;
     this.img = image;
     var self = this;
 
     //Speed
-    dx = 2;
-    dy = 2;
+    dx = DELTAX;
+    dy = DELTAY;
     var temporary_x;
     var temporary_y;
     this.counter = 0;
     
 
     
-    var grasswalkduration = 100;
+    var grasswalkduration = GRASSWALKTIME;
     var pokemon_name;
     this.pokemonObject;
     
@@ -73,10 +73,10 @@ function Characters(Game, canvas, context, image) {
         , 19: ["Player:You are the trainerRed, aren't u?", " ", "TrainerRed: yeah.. so you are also exploring... ", "             here take this TM it will help u smash boulder", " ", "Player:Thank You", " ", "-----RECEIVED TM--------"]
         , 20: ["Player:Where is the gym leader?", " ", "OldMan: The gym leader has gone to fight with TEAM ROCKET", " ", "Player: Which town?", " ", "OLDMan: Severialian City near the MT.Rush"]
         , 21: ["OldMan: I have lost my way to my house.....Where am I?", " ", "Player: Do u remember?", " ", "OldMan:Do u have some Chesto berries? ", " ", " ", "          !!!!!!!!!!!GET  LOST!!!!!!!!"]
-        , 22: ["Lady: Did you hear about the robbery at the game store?", "Player: NO", "Lady: Team Rocket are targeting me now, I am scared"]
+        , 22: ["Lady: Did you hear about the robbery at the game store?"," ", "Player: NO"," ", "Lady: Team Rocket are targeting me now, I am scared"]
         , 23: ["WeirdGuy: Did u see the old guy blocking the way?", " ", "Player: Yeah!!", "", "WeirdGuy: He has lost his wife and neice in these jungle and is alsways searching for them"]
         , 24: ["Lady: They took everything !!!!!", "", "Player: What?", "", "Lady: All my gaming accessories are gone... CURSE YOU TEAM ROCKET!!!!!!!!", "", "Player:I will try to bring them back"]
-        , snorlax: ["Player:MOVE SNORLAX!!!! ", "", "Snorlax: Hmmmmmmmmmmmm.. HMmmmmmm", " ", "Player: Wake up u fatty pokemon"]
+        , snorlax: ["Player:MOVE SNORLAX!!!! ", " ", "Snorlax: Hmmmmmmmmmmmm.. HMmmmmmm", " ", "Player: Wake up u fatty pokemon"]
         , snorlaxwake: ["", "", "", "!!!SNORLAX WOKE UP AND LEFT!!!!!!"]
         , unsmash: ["", "", "", "!!!!! THIS ROCK CAN BE SMASHED BY TMSMASH"]
         , smash: ["", "", "", "!!!!! THE ROCK HAS BEEN SMASHED BY TMSMASH"]
@@ -164,10 +164,10 @@ function Characters(Game, canvas, context, image) {
         this.player_y = temporary_y;
         player_camera.x = temporary_x - 300;
         player_camera.y = temporary_y - 20;
-        this.width = 30;
-        this.height = 50;
-        this.height_scale = 1.5;
-        this.width_scale = 1.5;
+        this.width = MAINPLAYERWIDTH;
+        this.height = MAINPLAYERHEIGHT;
+        this.height_scale = SCALEHEIGHT;
+        this.width_scale = SCALEWIDTH;
     }
 
 
@@ -214,7 +214,7 @@ function Characters(Game, canvas, context, image) {
         } else {
             talkTime--;
         }
-        if(keyword ==KEY_Space){
+        if(keyword ==KEY.space){
             if(world==13){
                 backgroundMusic.play();
             world=0;
@@ -222,7 +222,7 @@ function Characters(Game, canvas, context, image) {
             
         }
 
-        else if (keyword === KEY_ENTER) {
+        else if (keyword === KEY.enter) {
             if (world != 12) {
                 this.currentWorld = world;
             }
@@ -237,7 +237,7 @@ function Characters(Game, canvas, context, image) {
 
 
         }
-        else if (keyword == KEY_p) {
+        else if (keyword == KEY.p) {
             
             pokeballs.setXY(400, 580);
 
@@ -246,7 +246,7 @@ function Characters(Game, canvas, context, image) {
 
 
         }
-        else if (keyword == KEY_r) {
+        else if (keyword == KEY.r) {
             this.changeToNormal();
             pokemonBattle.pause();
             backgroundMusic.pause();
@@ -256,11 +256,11 @@ function Characters(Game, canvas, context, image) {
             
             backgroundMusic.play();
         }
-        else if (keyword == KEY_ESC) {
+        else if (keyword == KEY.esc) {
             world = this.currentWorld;
         }
 
-        else if (keyword == KEY_LEFT) {
+        else if (keyword == KEY.left) {
 
             spriteX = 1;
             spriteY = 1;
@@ -283,7 +283,7 @@ function Characters(Game, canvas, context, image) {
 
 
         }
-        else if (keyword == KEY_RIGHT) {
+        else if (keyword == KEY.right) {
 
             smashSound.pause();
             backgroundMusic.play();
@@ -314,7 +314,7 @@ function Characters(Game, canvas, context, image) {
 
         }
         //top
-        else if (keyword == KEY_UP) {
+        else if (keyword == KEY.up) {
 
 
             spriteX = 0;
@@ -341,7 +341,7 @@ function Characters(Game, canvas, context, image) {
 
 
         }
-        else if (keyword == KEY_DOWN) {
+        else if (keyword == KEY.down) {
 
             snorlaxSound.pause();
             backgroundMusic.play();

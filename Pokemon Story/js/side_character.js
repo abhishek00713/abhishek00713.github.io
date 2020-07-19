@@ -1,10 +1,10 @@
 function SideCharacter(context,image){
-    this.x=510;
-    this.y=810;
-    this.width = 30;
-    this.height = 50;
-    const height_scale = 1.5;
-    const width_scale = 1.5;
+    this.x=SIDEX;
+    this.y=SIDEY;
+    this.width = SIDEWIDTH;
+    this.height = SIDEHEIGHT;
+    const height_scale = SIDESCALE;
+    const width_scale = SIDESCALE;
     const scaledWidth = width_scale * this.width;
     const scaledHeight = height_scale * this.height;
     const img = image;

@@ -60,10 +60,10 @@ Game.drawLayer = function (layer) {
 
     var startCol = Math.floor(player_camera.x / map.tsize);
     
-    var endCol = startCol + 30;
+    var endCol = startCol + TOTAL_COL;
     
     var startRow = Math.floor(player_camera.y / map.tsize);
-    var endRow = startRow + 30;
+    var endRow = startRow + TOTAL_ROW;
     
     
     

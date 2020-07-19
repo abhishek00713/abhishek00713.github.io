@@ -1,12 +1,12 @@
 class ImageManager {
     constructor (){
         this.images = {};
-        //load bhako image haru ko list
+
         
     }
-//
+
     load(images, onDone) {
-        //The images are put inside the queue
+
         var queue = [];
         for(let im in images) {
             queue.push(
@@ -18,7 +18,7 @@ class ImageManager {
         }
 
         if(queue.length == 0){
-            // onProgress && onProgress(0,0,null,null, true);
+            
             onDone && onDone();
 
             return;

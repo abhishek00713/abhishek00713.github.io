@@ -1,14 +1,14 @@
 
 function Keyboard (){
-    this.LEFT = KEY_LEFT;
-    this.RIGHT = KEY_RIGHT;
-    this.UP = KEY_UP;
-    this.DOWN = KEY_DOWN;
-    this.ENTER = KEY_ENTER;
-    this.ESC = KEY_ESC;
-    this.p = KEY_p;
-    this.r = KEY_r;
-    this.Space =KEY_Space;
+    this.LEFT = KEY.left;
+    this.RIGHT = KEY.right;
+    this.UP = KEY.up;
+    this.DOWN = KEY.down;
+    this.ENTER = KEY.enter;
+    this.ESC = KEY.esc;
+    this.p = KEY.p;
+    this.r = KEY.r;
+    this.Space =KEY.space;
     
     this.keys = {};
     

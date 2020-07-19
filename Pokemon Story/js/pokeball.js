@@ -1,11 +1,11 @@
 function PokeBall(context, image) {
 
-    this.maxX = 580;
-    this.maxY = 296;
-    this.width = 100;
-    this.height = 100;
-    const height_scale = 1.5;
-    const width_scale = 1.5;
+    this.maxX = POKEBALLMAXX;
+    this.maxY = POKEBALLMAXY;
+    this.width = POKEBALLWIDTH;
+    this.height = POKEBALLHEIGHT;
+    const height_scale = SCALEHEIGHT;
+    const width_scale = SCALEWIDTH;
     const scaledWidth = width_scale * this.width;
     const scaledHeight = height_scale * this.height;
     const img = image;

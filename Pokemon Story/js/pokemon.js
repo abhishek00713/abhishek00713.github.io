@@ -1,10 +1,10 @@
 function Pokemon(context,image){
-    this.x=510;
-    this.y=810;
-    this.width = 350;
-    this.height = 350;
-    const height_scale = 1.5;
-    const width_scale = 1.5;
+    this.x=POKEMONX;
+    this.y=POKEMONY;
+    this.width = POKEMONWIDTH;
+    this.height = POKEMONHEIGHT;
+    const height_scale =SCALEHEIGHT;
+    const width_scale = SCALEWIDTH;
     const scaledWidth = width_scale * this.width;
     const scaledHeight = height_scale * this.height;
     const img = image;
