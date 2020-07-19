@@ -44,7 +44,7 @@ function PokeBall(context, image) {
         }
         
         else {
-            console.log(this.x, this.y);
+            
             if (this.x <= this.maxX && this.y >= this.maxY) {
                 this.x+=2;
                 this.y-=2;

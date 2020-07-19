@@ -1,10 +1,12 @@
 class ImageManager {
     constructor (){
         this.images = {};
+        //load bhako image haru ko list
+        
     }
-
-    load(images, onDone, onProgress) {
-        //The images queue
+//
+    load(images, onDone) {
+        //The images are put inside the queue
         var queue = [];
         for(let im in images) {
             queue.push(
@@ -16,19 +18,19 @@ class ImageManager {
         }
 
         if(queue.length == 0){
-            onProgress && onProgress(0,0,null,null, true);
+            // onProgress && onProgress(0,0,null,null, true);
             onDone && onDone();
 
             return;
         }
 
         var itemCounter = {
-            loaded: 0,
-            total: queue.length
+            loaded: 0, //number of loaded images
+            total: queue.length //total number of images
         };
 
         for(let i=0; i<queue.length; i++) {
-            this.loadItem(queue[i], itemCounter, onDone, onProgress);
+            this.loadItem(queue[i], itemCounter, onDone);
         }
     }
 
@@ -37,24 +39,24 @@ class ImageManager {
         return this.images[key];
     }
 
-    loadItem(queueItem, itemCounter, onDone, onProgress) {
+    loadItem(queueItem, itemCounter, onDone) {
         var img = new Image();
 
         img.onload = () => {
             this.images[queueItem.key] = img;
-            this.onItemLoaded(queueItem, itemCounter, onDone, onProgress, true);
+            this.onItemLoaded(queueItem, itemCounter, onDone);
         }
 
         img.onerror = () => {
-            this.onItemLoaded(queueItem, itemCounter, onDone, onProgress, false);
+            this.onItemLoaded(queueItem, itemCounter, onDone);
         }
 
         img.src = queueItem.path;
     }
 
-    onItemLoaded(queueItem, itemCounter, onDone, onProgress, success){
+    onItemLoaded(queueItem, itemCounter, onDone){
         itemCounter.loaded++;
-        onProgress && onProgress(itemCounter.loaded, itemCounter.total, queueItem.key, queueItem.path, success);
+        
 
         if(itemCounter.loaded == itemCounter.total) {
             onDone && onDone();

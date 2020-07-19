@@ -25,7 +25,8 @@ function Characters(Game, canvas, context, image) {
     
     var random;
     
-    this.characterDirection = -1; // 0 = left, 1 = right, 2= top, 3 = bottom
+     // 0 = left, 1 = right, 2= top, 3 = bottom
+    this.characterDirection = -1;
     
     
     var world0walkableTiles = [-1, 4, 12, 970];
@@ -36,11 +37,10 @@ function Characters(Game, canvas, context, image) {
     this.walk = false;
     var column;
     var row;
-    var animation_delta;
+    
     this.characterIndex = 0;
     this.balls = 0;
-    // if(this.player_x % 31 !==0) column++;
-    // if(this.player_y %31 !==0) row++;
+    
     var sideChar = false;
     var tile;
     var spriteX = 0;
@@ -72,7 +72,7 @@ function Characters(Game, canvas, context, image) {
         , 18: ["LostGirl: Help me!!! I have lost my pokemon", " ", "Player:Which pokemon?", " ", "LostGirl: Mewtwo", " ", "Player: LOL"]
         , 19: ["Player:You are the trainerRed, aren't u?", " ", "TrainerRed: yeah.. so you are also exploring... ", "             here take this TM it will help u smash boulder", " ", "Player:Thank You", " ", "-----RECEIVED TM--------"]
         , 20: ["Player:Where is the gym leader?", " ", "OldMan: The gym leader has gone to fight with TEAM ROCKET", " ", "Player: Which town?", " ", "OLDMan: Severialian City near the MT.Rush"]
-        , 21: ["OldMan: I have lost my way to my house.....Where am I?", " ", "Player: Do u remember?", " ", "OldMan:You are not my wife ", " ", " ", "          !!!!!!!!!!!GET  LOST!!!!!!!!"]
+        , 21: ["OldMan: I have lost my way to my house.....Where am I?", " ", "Player: Do u remember?", " ", "OldMan:Do u have some Chesto berries? ", " ", " ", "          !!!!!!!!!!!GET  LOST!!!!!!!!"]
         , 22: ["Lady: Did you hear about the robbery at the game store?", "Player: NO", "Lady: Team Rocket are targeting me now, I am scared"]
         , 23: ["WeirdGuy: Did u see the old guy blocking the way?", " ", "Player: Yeah!!", "", "WeirdGuy: He has lost his wife and neice in these jungle and is alsways searching for them"]
         , 24: ["Lady: They took everything !!!!!", "", "Player: What?", "", "Lady: All my gaming accessories are gone... CURSE YOU TEAM ROCKET!!!!!!!!", "", "Player:I will try to bring them back"]
@@ -87,6 +87,9 @@ function Characters(Game, canvas, context, image) {
         , uncut: ["", "", "", "!!!!!!!!THE TREE CAN BE CUT DOWN BY THE TM CUT!!!!!!!!"]
     };
 
+
+
+    //CHARACTER IMAGE IMPLEMENTATION
 
     this.drawFrame = function (animationArray) {
         const scaledWidth = this.width_scale * this.width;
@@ -127,11 +130,15 @@ function Characters(Game, canvas, context, image) {
 
 
     }
-    this.setDelta = function (input) {
-        animation_delta = input;
-    }
+
+
+    
+
+
+    // CHANGES THE CHARACTER INTO BATTLE FORM
 
     this.changeToBigBoy = function () {
+        
         this.Bigboy = true;
         this.img = imageManager.getImage("BigCharacter");
         this.height = 128;
@@ -147,6 +154,9 @@ function Characters(Game, canvas, context, image) {
 
 
     }
+
+    //CHANGES THE CHARATCER INTO NORMAL FORM
+
     this.changeToNormal = function () {
         this.Bigboy = false;
         this.img = imageManager.getImage("characters");
@@ -159,6 +169,9 @@ function Characters(Game, canvas, context, image) {
         this.height_scale = 1.5;
         this.width_scale = 1.5;
     }
+
+
+    //MAIN CHARACTER MOVEMENT 
 
     this.movePlayer = function (keyword) {
         
@@ -201,12 +214,15 @@ function Characters(Game, canvas, context, image) {
         } else {
             talkTime--;
         }
-        if(keyword ==32){
-            backgroundMusic.play();
+        if(keyword ==KEY_Space){
+            if(world==13){
+                backgroundMusic.play();
             world=0;
+            }
+            
         }
 
-        else if (keyword === 13) {
+        else if (keyword === KEY_ENTER) {
             if (world != 12) {
                 this.currentWorld = world;
             }
@@ -221,7 +237,7 @@ function Characters(Game, canvas, context, image) {
 
 
         }
-        else if (keyword == 80) {
+        else if (keyword == KEY_p) {
             
             pokeballs.setXY(400, 580);
 
@@ -230,7 +246,7 @@ function Characters(Game, canvas, context, image) {
 
 
         }
-        else if (keyword == 82) {
+        else if (keyword == KEY_r) {
             this.changeToNormal();
             pokemonBattle.pause();
             backgroundMusic.pause();
@@ -240,11 +256,11 @@ function Characters(Game, canvas, context, image) {
             
             backgroundMusic.play();
         }
-        else if (keyword == 27) {
+        else if (keyword == KEY_ESC) {
             world = this.currentWorld;
         }
 
-        else if (keyword == 37) {
+        else if (keyword == KEY_LEFT) {
 
             spriteX = 1;
             spriteY = 1;
@@ -265,21 +281,9 @@ function Characters(Game, canvas, context, image) {
             }
 
 
-            //  this.drawFrame(spriteX,spriteY);
-
-
-            //    if(this.walk==false){
-            //        this.player_x+=dx;
-            //    this.drawFrame(spriteX,spriteY);
-
-            //    }
-            //    else{
-            //        this.drawFrame(spriteX,spriteY);
-            //    }
-
 
         }
-        else if (keyword == 39) {
+        else if (keyword == KEY_RIGHT) {
 
             smashSound.pause();
             backgroundMusic.play();
@@ -305,22 +309,12 @@ function Characters(Game, canvas, context, image) {
                 this.characterDirection = -1;
             }
 
-            // this.drawFrame(spriteX,spriteY);
-
-            // if(this.walk==false){
-            //     // this.player_x-=dx;
-
-
-            // }
-            // else{
-
-            //     this.drawFrame(spriteX,spriteY);
-            // }
+            
 
 
         }
         //top
-        else if (keyword == 38) {
+        else if (keyword == KEY_UP) {
 
 
             spriteX = 0;
@@ -347,7 +341,7 @@ function Characters(Game, canvas, context, image) {
 
 
         }
-        else if (keyword == 40) {
+        else if (keyword == KEY_DOWN) {
 
             snorlaxSound.pause();
             backgroundMusic.play();
@@ -387,6 +381,11 @@ function Characters(Game, canvas, context, image) {
 
     }
 
+
+
+
+    //COLLISION CHECK 
+
     this.checkCollision = function (x, y) {
         column = 0;
         row = 0;
@@ -395,10 +394,10 @@ function Characters(Game, canvas, context, image) {
         row = Math.floor((y + this.height / 2) / TILE_SIZE);
         
         if (world == 0) {
-            // tile = map.getTile(1, column, row);
+            
             tile = map.getTile(1, column, row);
 
-            if (tile == 970) {
+            if (tile == GRASS_TILE) {
 
                 grasswalkduration--;
                 if (grasswalkduration == 0) {
@@ -406,11 +405,14 @@ function Characters(Game, canvas, context, image) {
                     random = Math.floor((Math.random() * 5) + 1);
                     temporary_x = x;
                     temporary_y = y;
-
+                    grasswalkduration = Math.floor(Math.random() * 1000+500);
+                    
                     this.changeToBigBoy();
                     
                     world = 11;
-                    grasswalkduration = Math.floor(Math.random() * 1000+500);
+                    
+                    
+                    
                     return true;
                 }
 
@@ -519,7 +521,7 @@ function Characters(Game, canvas, context, image) {
         }
         else if (world == 6) {
             tile = route.getRouteTile(1, column, row);
-            if (tile == 970) {
+            if (tile == GRASS_TILE) {
                 grasswalkduration--;
                 if (grasswalkduration == 0) {
                     this.currentWorld = world;
@@ -529,7 +531,7 @@ function Characters(Game, canvas, context, image) {
 
                     this.changeToBigBoy();
                     world = 11;
-                    grasswalkduration = Math.floor(Math.random() * 200);
+                    grasswalkduration = Math.floor(Math.random() *800+ 200);
                     return true;
                 }
 
@@ -544,7 +546,7 @@ function Characters(Game, canvas, context, image) {
 
 
                 }
-                else if (tile == 1005) {
+                else if (tile == ROCK_TILE) {
                     
                     if (smash == 1) {
                         
@@ -629,6 +631,9 @@ function Characters(Game, canvas, context, image) {
         return false;
     }
 
+
+    //SIDE CHARACTER COLLISION IMPLEMENTATION
+
     this.sideCharCollision = function (x, y) {
         
         
@@ -650,19 +655,19 @@ function Characters(Game, canvas, context, image) {
         }
         else if (world == 1) {
 
-            //1st
+            
             if (x >= 122 && x <= 174 && y >= 250 && y <= 326) {
                 talk1 = true;
                 talkTime = 10;
                 return true;
             }
-            //2nd
+            
             else if (x >= 556 && x <= 640 && y >= 50 && y <= 118) {
                 talk2 = true;
                 talkTime = 10;
                 return true;
             }
-            //3rd
+            
             else if (x >= 562 && x <= 640 && y >= 550 && y <= 618) {
                 
                 talk3 = true;
@@ -874,6 +879,8 @@ function Characters(Game, canvas, context, image) {
 
 
 
+
+    //TALK SCRIPT IMPLEMENTATION
 
     this.drawScript = function () {
         if (talkTime === 0) return;
@@ -1224,6 +1231,10 @@ function Characters(Game, canvas, context, image) {
 
 
     }
+
+
+
+    //DOOR COLLISION CHECK
     this.doorCheck = function () {
         if (this.player_y == -26 && world == 0) {
             this.player_x = 550;
@@ -1241,7 +1252,7 @@ function Characters(Game, canvas, context, image) {
 
             for (var i = 0; i < doorTiles.length; i++) {
                 if (tile == 4563 || tile == 4564) {
-                    // context.clearRect(0,0,canvas.width,canvas.height);
+                    
                     if (this.player_x >= 200 && this.player_x <= 300 && this.player_y == 314) {
 
                         this.player_x = 510;
@@ -1320,6 +1331,10 @@ function Characters(Game, canvas, context, image) {
         }
         }
     }
+
+
+
+    //ROOM COLLISION CHECK
     this.RoomCollision = function () {
 
 
@@ -1383,28 +1398,15 @@ function Characters(Game, canvas, context, image) {
 
 
 
-
-
-    this.playerCameraMove = function (delta) {
-        if (this.walk == true) {
-            var dirx = 0;
-            var diry = 0;
-            if (Keyboard.isDown(Keyboard.LEFT)) { dirx = -1; }
-            if (Keyboard.isDown(Keyboard.RIGHT)) { dirx = 1; }
-            if (Keyboard.isDown(Keyboard.UP)) { diry = -1; }
-            if (Keyboard.isDown(Keyboard.DOWN)) { diry = 1; }
-
-            
-            this.walk = false;
-            
-        }
-    }
+   
+//Game loop
 
     this.init = function () {
         this.counter++;
         
 
-        Game.tick(0);
+        Game.tick();
+
         if (world == 1) {
 
 

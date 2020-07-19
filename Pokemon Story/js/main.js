@@ -1,92 +1,26 @@
-// 
-//
-// Asset loader
-//
+
 var world = 13;
-var that ;
-var Loader = {
-    images: {}
-};
+
+var player_camera = {x:0,y:0,maxX:300,maxY:300};
 var main_player;
 
 
-//
-// Keyboard handler
-//
 
 
-var Keyboard = {};
-
-Keyboard.LEFT = KEY_LEFT;
-Keyboard.RIGHT = KEY_RIGHT;
-Keyboard.UP = KEY_UP;
-Keyboard.DOWN = KEY_DOWN;
-Keyboard.ENTER = KEY_ENTER;
-Keyboard.ESC = KEY_ESC;
-Keyboard.p = KEY_p;
-Keyboard.r = KEY_r;
-Keyboard.Space =KEY_Space;
-
-Keyboard._keys = {};
-
-Keyboard.listenForEvents = function (keys) {
-    window.addEventListener('keydown', this._onKeyDown.bind(this));
-    window.addEventListener('keyup', this._onKeyUp.bind(this));
-
-    keys.forEach(function (key) {
-        this._keys[key] = false;
-        console.log(this._keys[key]);
-    }.bind(this));
-    
-    
-}
-
-Keyboard._onKeyDown = function (event) {
-    var keyCode = event.keyCode;
-    
-    if (keyCode in this._keys) {
-        event.preventDefault();
-        this._keys[keyCode] = true;
-        
-        
-        console.log('keys',this._keys);
-        console.log('code',keyCode);
-        
-        Game.moveCharacter(keyCode);    
 
 
-    }
-    
-};
-
-Keyboard._onKeyUp = function (event) {
-    var keyCode = event.keyCode;
-    player.characterDirection =-1;
-    if (keyCode in this._keys) {
-        
-        this._keys[keyCode] = false;
-    }
-};
-
-Keyboard.isDown = function (keyCode) {
-    if (!keyCode in this._keys) {
-        throw new Error('Keycode ' + keyCode + ' is not being listened to');
-    }
-    
-    
-    return this._keys[keyCode];
-};
 
 //
 // Game object
 //
 
+var Keyboard = new Keyboard();
 var Game = {};
 
 Game.run = function () {
-    console.log(this);
+    
     this.init();
-    this._previousElapsed = 0;
+    
 
     
 
@@ -102,20 +36,20 @@ Game.init = function () {
     
     
  
-    console.log('init ko',map);
+    
     
     
 };
 
-Game.update = function (delta) {
-    
-};
+
 Game.getSourceX = function(tile){
     return((tile > TILE_CAPACITY_IN_TILESHEET) ? (tile % TILE_CAPACITY_IN_TILESHEET - 1) * map.tsize : (tile - 1) * map.tsize);
 }
 Game.getSourceY = function(tile){
     return((tile > TILE_CAPACITY_IN_TILESHEET) ? Math.floor(tile/TILE_CAPACITY_IN_TILESHEET) * map.tsize : 0);
 }
+
+//TILE DRAWING
 
 Game.drawLayer = function (layer) {
     
@@ -126,10 +60,10 @@ Game.drawLayer = function (layer) {
 
     var startCol = Math.floor(player_camera.x / map.tsize);
     
-    var endCol = startCol + (30*map.tsize / map.tsize);
+    var endCol = startCol + 30;
     
     var startRow = Math.floor(player_camera.y / map.tsize);
-    var endRow = startRow + (30*map.tsize / map.tsize);
+    var endRow = startRow + 30;
     
     
     
@@ -218,7 +152,7 @@ Game.drawLayer = function (layer) {
 };
 
 Game.render = function () {
-    // draw map background layer
+    
     if(world ==11){
     context.fillStyle = "#90EE90";
     context.fillRect(0, 0, canvas.width,canvas.height);
@@ -259,12 +193,12 @@ Game.render = function () {
 
 
 
-    //Pokemon Name
     
     
+    
 
 
-
+//PLAYER CHOICES 
    
    context.beginPath();
 
@@ -284,6 +218,8 @@ Game.render = function () {
     context.fillText(txt1, 470,610)
 
     }
+
+//MAIN TITLE
     else if(world ==13){
         context.drawImage(backimg,0,0,canvas.width,canvas.height);
         context.font = "29px Arial";
@@ -291,6 +227,7 @@ Game.render = function () {
     var txt="Press Enter for help";
     context.fillText(txt, 20,40)
     }
+
     
     // draw map bot layer
     this.drawLayer(0);
@@ -305,7 +242,9 @@ Game.render = function () {
 
 };
 
-Game.tick = function (elapsed) {
+
+//FETCH IMAGES
+Game.tick = function () {
     
     if(world ==0 ){
         
@@ -336,11 +275,6 @@ Game.tick = function (elapsed) {
     }
 
     
-    var delta = (elapsed - this._previousElapsed) / 1000.0;
-    delta = Math.min(delta, 0.25); // maximum delta of 250 ms
-    this._previousElapsed = elapsed;
-
-    Game.update(delta);
     
     Game.render();
 }.bind(Game);
@@ -356,7 +290,7 @@ player.movePlayer(input);
     
 }
 
-// };
+
 
 //
 // start up function
@@ -366,7 +300,7 @@ var context;
 canvas = document.getElementById('pokemon_container');
 context = canvas.getContext('2d');
 var player;
-var camera;
+
 var Side1,Side3;
 var pokeballs;
 var Backgroundsound;
@@ -382,8 +316,7 @@ function onDone(){
     //player_obj
     player = new Characters(Game,canvas, context, imageManager.getImage("characters"));
 
-    //camera
-    camera = new Camera(map, 620, 620);    
+      
 
     //pokeballs
     pokeballs = new PokeBall(context, imageManager.getImage("PokemonBall"));
@@ -530,8 +463,9 @@ imageManager.load({
 ,"PokemonStand" : "Sprites/grass.png"
 ,"PlayerStand" : "Sprites/player_stand.png"
 
-
+//TITLE IMAGE
 ,"backimg" : "Sprites/backimg.jpg"
 }, onDone);
-var player_camera = {x:0,y:0,maxX:300,maxY:300};
+
+
 
